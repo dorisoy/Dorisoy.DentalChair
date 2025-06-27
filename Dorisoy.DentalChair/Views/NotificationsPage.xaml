@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.NotificationsPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:templates="clr-namespace:Dorisoy.DentalChair.Views.Templates"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views">
+    <ContentPage.Content>
+
+        <Grid Padding="15,10"
+              RowDefinitions="Auto, *">
+
+            <!--  Close Icon  -->
+            <Grid Margin="5"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Center">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnClose_Tapped" />
+                </Grid.GestureRecognizers>
+                <Label FontFamily="IonIcons"
+                       FontSize="25"
+                       HorizontalOptions="End"
+                       Text="{x:Static views:IonIcons.AndroidClose}"
+                       TextColor="{DynamicResource BaseTextColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnClose_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <CollectionView Grid.RowSpan="2"
+                            Margin="0,40,0,0"
+                            ItemsSource="{Binding Notifications}"
+                            SelectionMode="Single"
+                            VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="0"
+                                       Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <templates:NotificationItemTemplate />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

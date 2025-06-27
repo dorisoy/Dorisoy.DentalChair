@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sel:SimpleShell x:Class="Dorisoy.DentalChair.AppShell"
+                 xmlns:sel="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell"
+                 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                 xmlns:animations="clr-namespace:AlohaKit.Animations;assembly=AlohaKit.Animations"
+                 xmlns:local="clr-namespace:Dorisoy.DentalChair"
+                 xmlns:ctl="clr-namespace:Dorisoy.DentalChair.Controls"
+                 xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+                 xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+                 xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+                 helpers:ViewModelLocator.AutoWireViewModel="True"
+                 x:Name="thisShell"
+                 Shell.FlyoutBehavior="Disabled">
+
+    <!--页面背景渐变颜色 E9E9F1-->
+    <sel:SimpleShell.Background>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+            <GradientStop Offset="0.0"
+                          Color="#E9E9F1" />
+            <GradientStop Offset="1.0"
+                          Color="#FFFFFF" />
+        </LinearGradientBrush>
+    </sel:SimpleShell.Background>
+
+    <!--样式资源-->
+    <sel:SimpleShell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NotificationIconColor">#6E6E6E</Color>
+            <Color x:Key="ThemeIconColor">#6E6E6E</Color>
+        </ResourceDictionary>
+
+        <!--前缀样式-->
+        <LinearGradientBrush x:Key="FirstTabBrush"
+                             StartPoint="0,0"
+                             EndPoint="1,0">
+            <GradientStop Offset="0.1"
+                          Color="#313F4A" />
+            <GradientStop Offset="1.1"
+                          Color="#000000" />
+        </LinearGradientBrush>
+
+        <!--默认样式-->
+        <LinearGradientBrush x:Key="NormalTabBrush"
+                             StartPoint="0,0"
+                             EndPoint="1,0">
+            <GradientStop Offset="0.0"
+                          Color="#AA000000" />
+            <GradientStop Offset="0.1"
+                          Color="#2D3942" />
+            <GradientStop Offset="0.9"
+                          Color="#2D3942" />
+            <GradientStop Offset="1.1"
+                          Color="#AA000000" />
+        </LinearGradientBrush>
+
+        <!--后缀样式-->
+        <LinearGradientBrush x:Key="LastTabBrush"
+                             StartPoint="0,0"
+                             EndPoint="1,0">
+            <GradientStop Color="#FF000000"
+                          Offset="0.0" />
+            <GradientStop Color="#FF313F4A"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+
+        <!--分割线-->
+        <LinearGradientBrush x:Key="SpliterBrush"
+                             StartPoint="0,0"
+                             EndPoint="0,1">
+            <GradientStop Color="#313F4A"
+                          Offset="0.0" />
+            <GradientStop Color="#000000"
+                          Offset="0.5" />
+            <GradientStop Color="#313F4A"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+
+        <!--分割线-->
+        <Style x:Key="Spliter"
+               TargetType="Border">
+            <Setter Property="Background"
+                    Value="Black" />
+            <Setter Property="WidthRequest"
+                    Value="2" />
+            <Setter Property="HeightRequest"
+                    Value="54" />
+            <Setter Property="VerticalOptions"
+                    Value="Center" />
+            <Setter Property="HorizontalOptions"
+                    Value="Center" />
+        </Style>
+    </sel:SimpleShell.Resources>
+    
+    <!--内容页-->
+    <ShellContent Title="牙椅"
+                  Icon="chair.png"
+                  FlyoutIcon="chair_selected.png"
+                  ContentTemplate="{DataTemplate views:ChairPage}"
+                  Route="ChairPage" />
+
+    <ShellContent Title="手机"
+                  Icon="handpiece.png"
+                  FlyoutIcon="handpiece_selected.png"
+                  ContentTemplate="{DataTemplate views:HandpiecePage}"
+                  Route="HandpiecePage" />
+
+    <ShellContent Title="内窥镜"
+                  Icon="scan3d.png"
+                  FlyoutIcon="scan3d_selected.png"
+                  ContentTemplate="{DataTemplate views:Scan3DPage}"
+                  Route="Scan3DPage" />
+
+    <ShellContent Title="根管"
+                  Icon="rasp.png"
+                  FlyoutIcon="rasp_selected.png"
+                  ContentTemplate="{DataTemplate views:RootcanalPage}"
+                  Route="RootcanalPage" />
+
+    <ShellContent Title="种植机"
+                  Icon="implant.png"
+                  FlyoutIcon="implant_selected.png"
+                  ContentTemplate="{DataTemplate views:DentalImplantationPage}"
+                  Route="DentalImplantationPage" />
+
+    <ShellContent Title="配置"
+                  Icon="icon_78.png"
+                  FlyoutIcon="icon_78_selected.png"
+                  ContentTemplate="{DataTemplate views:AccountPage}"
+                  Route="AccountPage" />
+
+    <!--根页面容器-->
+    <sel:SimpleShell.RootPageContainer>
+        <Grid x:Name="mianLayout"
+              RowDefinitions="Auto,*,94"
+              ColumnDefinitions="8.2*,1.8*"
+              HorizontalOptions="Fill"
+              Background="Transparent">
+
+            <!--状态工具栏-->
+            <Grid  x:Name="statusToolbar"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   ColumnDefinitions="*,*,*,*"
+                   ColumnSpacing="20"
+                   Padding="15,15,30,15"
+                   Background="Transparent">
+
+                <Label Grid.Column="0"
+                       x:Name="systemTimer"
+                       ToolTipProperties.Text="时间"
+                       Text="17:09:33"
+                       TextColor="{DynamicResource BaseTextColor}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="25" />
+
+                <!--患者选择-->
+                <Grid Grid.Column="1"
+                      ColumnDefinitions="30,*,30">
+                    <Label Grid.Column="0"
+                           ToolTipProperties.Text="用户"
+                           FontFamily="MauiKitIcons"
+                           FontSize="30"
+                           HorizontalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center"
+                           Opacity="1"
+                           Text="{x:Static views:MauiKitIcons.AccountOutline}"
+                           TextColor="{DynamicResource BaseTextColor}"
+                           VerticalOptions="CenterAndExpand" />
+
+                    <Label Grid.Column="1"
+                           Text="{Binding User.Name}"
+                           TextColor="{DynamicResource BaseTextColor}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="25" />
+
+                    <Label Grid.Column="2"
+                           FontFamily="MauiKitIcons"
+                           FontSize="30"
+                           HorizontalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center"
+                           Opacity="1"
+                           Text="{x:Static views:MauiKitIcons.ChevronDown}"
+                           TextColor="{DynamicResource BaseTextColor}"
+                           VerticalOptions="CenterAndExpand" />
+
+                    <!--<Picker  Grid.Column="1"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="Fill"
+                             Margin="15,0,0,0"
+                             ItemDisplayBinding="{Binding Duration}"
+                             ItemsSource="{Binding DataSource}"
+                             MinimumWidthRequest="70"
+                             SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                             SelectedItem="{Binding DataSource[0], Mode=OneTime}" />-->
+                </Grid>
+
+                <!--医生选择-->
+                <Grid Grid.Column="2"
+                      ColumnDefinitions="30,*"
+                      Padding="100,0,0,0">
+                    <Label Grid.Column="0"
+                           ToolTipProperties.Text="医生"
+                           FontFamily="MauiKitIcons"
+                           FontSize="30"
+                           HorizontalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center"
+                           Opacity="1"
+                           Text="{x:Static views:MauiKitIcons.AccountCardDetailsOutline}"
+                           TextColor="{DynamicResource BaseTextColor}"
+                           VerticalOptions="CenterAndExpand" />
+                    <Label Grid.Column="1"
+                           Text="Beispiel.Peter"
+                           TextColor="{DynamicResource BaseTextColor}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="25" />
+                </Grid>
+
+                <!--锁屏-->
+                <HorizontalStackLayout Grid.Column="3"
+                                       HorizontalOptions="End">
+                    <!--设置-->
+                    <Border x:Name="SettingTab"
+                            WidthRequest="35"
+                            HeightRequest="35"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End"
+                            StrokeThickness="0"
+                            Margin="0,0,50,0"
+                            Background="#55FFFFFF"
+                            StrokeShape="{RoundRectangle CornerRadius=50}">
+                        <Label FontFamily="MauiKitIcons"
+                               FontSize="30"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               Opacity="1"
+                               Text="{x:Static views:MauiKitIcons.SettingsOutline}"
+                               TextColor="{DynamicResource BaseTextColor}"
+                               VerticalOptions="CenterAndExpand" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SettingTab_Tapped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                    
+                    <!--锁屏-->
+                    <Border x:Name="LockTab"
+                            WidthRequest="35"
+                            HeightRequest="35"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End"
+                            StrokeThickness="0"
+                            Background="#55FFFFFF"
+                            StrokeShape="{RoundRectangle CornerRadius=50}">
+                        <Label FontFamily="MauiKitIcons"
+                               FontSize="30"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               Opacity="1"
+                               Text="{x:Static views:MauiKitIcons.LockOutline}"
+                               TextColor="{DynamicResource BaseTextColor}"
+                               VerticalOptions="CenterAndExpand" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LockTab_Tapped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </HorizontalStackLayout>
+            </Grid>
+
+            <!--右侧边栏菜单-->
+            <Border x:Name="rightSliderMenu"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.RowSpan="3"
+                    Margin="0,0,0,21"
+                    Opacity="1"
+                    Background="White"
+                    StrokeShape="{RoundRectangle CornerRadius=0}">
+
+                <Grid RowDefinitions="*,*,*,*,*"
+                      ColumnDefinitions="*,2,*"
+                      Margin="10">
+
+                    <!--1 control-->
+                    <ctl:BorderButton Grid.Row="0"
+                                      Grid.Column="0"
+                                      Icon="icon_1.png"/>
+                    <Border Grid.Row="0"
+                            Grid.Column="1"
+                            Style="{StaticResource Spliter}" />
+                    <ctl:BorderButton Grid.Row="0"
+                                      Grid.Column="2"
+                                      Icon="icon_2.png"/>
+
+                    <!--2-->
+                    <ctl:BorderButton Grid.Row="1"
+                                      Grid.Column="0"
+                                      Icon="icon_3.png"/>
+                    <Border Grid.Row="1"
+                            Grid.Column="1"
+                            Style="{StaticResource Spliter}" />
+                    <ctl:BorderButton Grid.Row="1"
+                                      Grid.Column="2"
+                                      Icon="icon_4.png" />
+
+                    <!--3-->
+                    <ctl:BorderButton Grid.Row="2"
+                                      Grid.Column="0" />
+                    <Border Grid.Row="2"
+                            Grid.Column="1"
+                            Style="{StaticResource Spliter}" />
+                    <ctl:BorderButton Grid.Row="2"
+                                      Grid.Column="2"
+                                      Icon="icon_6.png"/>
+
+                    <!--4 闹钟控制-->
+                    <ctl:BorderButton Grid.Row="3"
+                                      Grid.Column="0"
+                                      Icon="icon_7.png"
+                                      IconWidth="52"
+                                      IconHeight="65"
+                                      Clicked="Tap_AlarmClock1" />
+                    <Border Grid.Row="3"
+                            Grid.Column="1"
+                            Style="{StaticResource Spliter}" />
+                    <ctl:BorderButton Grid.Row="3"
+                                      Grid.Column="2"
+                                      Icon="icon_8.png"
+                                      IconWidth="52"
+                                      IconHeight="65"
+                                      Clicked="Tap_AlarmClock2" />
+
+                    <!--5-->
+                    <ctl:BorderButton Grid.Row="4"
+                                      Grid.Column="0"
+                                      Icon="icon_9.png"/>
+                    <Border Grid.Row="4"
+                            Grid.Column="1"
+                            Style="{StaticResource Spliter}" />
+                    <ctl:BorderButton Grid.Row="4"
+                                      Grid.Column="2"
+                                      Icon="icon_10.png"/>
+                </Grid>
+
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                            Opacity="0.6"
+                            Radius="12"
+                            Offset="-2,0" />
+                </Border.Shadow>
+            </Border>
+
+            <!--左侧内容栏-->
+            <sel:SimpleNavigationHost x:Name="shellHost"
+                                      Grid.Row="1"
+                                      Grid.Column="0"
+                                      Grid.RowSpan="2"
+                                      Margin="0,0,0,21" />
+
+            <!--底部边线-->
+            <Border Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="End"
+                    Background="#313F4A"
+                    HeightRequest="19"
+                    StrokeThickness="0"
+                    StrokeShape="{RoundRectangle CornerRadius=0}">
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                            Opacity="0.5"
+                            Radius="2"
+                            Offset="0,-1" />
+                </Border.Shadow>
+            </Border>
+
+            <!--菜单-->
+            <Grid  Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   ColumnSpacing="0"
+                   HorizontalOptions="Fill"
+                   ColumnDefinitions="*,137,Auto,137,*"
+                   BackgroundColor="Transparent">
+
+                <!--左侧状态栏-->
+                <HorizontalStackLayout Grid.Column="0"
+                                       HorizontalOptions="End">
+                    <Grid>
+                        <Image Margin="0"
+                               WidthRequest="38"
+                               HeightRequest="43"
+                               VerticalOptions="Start"
+                               HorizontalOptions="End"
+                               Source="icon_11.png">
+                        </Image>
+                        <Border WidthRequest="25"
+                                HeightRequest="25"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Center"
+                                Background="Red"
+                                Margin="-40,30,0,0"
+                                StrokeShape="{RoundRectangle CornerRadius=50}">
+                            <Label Text="1"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="Black"
+                                   FontSize="20" />
+                        </Border>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </HorizontalStackLayout>
+
+                <Image Grid.Column="1"
+                       Source="leftbar_bg.png"
+                       HorizontalOptions="End"
+                       Background="Transparent"
+                       Margin="0,0,-2,0" />
+                
+                <HorizontalStackLayout Grid.Column="2"
+                                       x:Name="tabBar"
+                                       Margin="0,0"
+                                       HorizontalOptions="Fill"
+                                       Spacing="0"
+                                       Background="#313F4A"
+                                       BindableLayout.ItemsSource="{Binding ShellSections, Source={x:Reference thisShell}}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="BaseShellItem">
+                            <Grid ColumnDefinitions="*"
+                                  x:Name="svgGrid"
+                                  Background="#313F4A"
+                                  Padding="0,0,0,0">
+
+                                <!--分割线-->
+                                <Image Source="spliter.png"
+                                       x:Name="svgSpliter"
+                                       WidthRequest="2"
+                                       HeightRequest="40"
+                                       HorizontalOptions="Start"
+                                       Background="{StaticResource SpliterBrush}">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding IsChecked}"
+                                                     Value="True">
+                                            <Setter Property="IsVisible"
+                                                    Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding IsChecked}"
+                                                     Value="False">
+                                            <Setter Property="Source"
+                                                    Value="True" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+
+                                <!--按钮-->
+                                <Image x:Name="svgImageButton"
+                                       Source="{Binding Icon}"
+                                       Margin="50,0,50,0"
+                                       WidthRequest="45"
+                                       HeightRequest="45"
+                                       Background="Transparent"
+                                       HorizontalOptions="Center"
+                                       ToolTipProperties.Text="{Binding Title}">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding IsChecked}"
+                                                     Value="True">
+                                            <Setter Property="Source"
+                                                    Value="{Binding FlyoutIcon}" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding IsChecked}"
+                                                     Value="False">
+                                            <Setter Property="Source"
+                                                    Value="{Binding Icon}" />
+                                        </DataTrigger>
+                                        <!--Route="AccountPage"-->
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding Title}"
+                                                     Value="配置">
+                                            <Setter Property="WidthRequest"
+                                                    Value="40" />
+                                            <Setter Property="HeightRequest"
+                                                    Value="40" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ShellItemButtonClicked" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <!--Tab选中状态背景样式-->
+                                <Grid.Triggers>
+                                    <MultiTrigger TargetType="Grid">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding IsChecked}"
+                                                              Value="True" />
+                                            <BindingCondition Binding="{Binding Title}"
+                                                              Value="牙椅" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background"
+                                                Value="{StaticResource FirstTabBrush}" />
+                                    </MultiTrigger>
+                                    <MultiTrigger TargetType="Grid">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding IsChecked}"
+                                                              Value="True" />
+                                            <BindingCondition Binding="{Binding Title}"
+                                                              Value="配置" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background"
+                                                Value="{StaticResource LastTabBrush}" />
+                                    </MultiTrigger>
+                                    <MultiTrigger TargetType="Grid">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding IsChecked}"
+                                                              Value="True" />
+                                            <BindingCondition Binding="{Binding Title}"
+                                                              Value="手机" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background"
+                                                Value="{StaticResource NormalTabBrush}" />
+                                    </MultiTrigger>
+                                    <MultiTrigger TargetType="Grid">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding IsChecked}"
+                                                              Value="True" />
+                                            <BindingCondition Binding="{Binding Title}"
+                                                              Value="内窥镜" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background"
+                                                Value="{StaticResource NormalTabBrush}" />
+                                    </MultiTrigger>
+                                    <MultiTrigger TargetType="Grid">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding IsChecked}"
+                                                              Value="True" />
+                                            <BindingCondition Binding="{Binding Title}"
+                                                              Value="根管" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background"
+                                                Value="{StaticResource NormalTabBrush}" />
+                                    </MultiTrigger>
+                                    <MultiTrigger TargetType="Grid">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding IsChecked}"
+                                                              Value="True" />
+                                            <BindingCondition Binding="{Binding Title}"
+                                                              Value="种植机" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background"
+                                                Value="{StaticResource NormalTabBrush}" />
+                                    </MultiTrigger>
+                                </Grid.Triggers>
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShellItemButtonClicked" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </HorizontalStackLayout>
+                
+                <Image Grid.Column="3"
+                       Source="rightbar_bg.png"
+                       HorizontalOptions="Start"
+                       Background="Transparent"
+                       Margin="-2,0,0,0" />
+
+                <!--右侧菜单折叠-->
+                <HorizontalStackLayout Grid.Column="3"
+                                       Grid.ColumnSpan="2"
+                                       Spacing="0" 
+                                       Padding="100,0,0,0">
+                    <Border  WidthRequest="32"
+                             HeightRequest="32"
+                             VerticalOptions="Start"
+                             HorizontalOptions="Start"
+                             StrokeThickness="0"
+                             StrokeShape="{RoundRectangle CornerRadius=0}">
+                        <Image Margin="0"
+                               x:Name="menuList"
+                               WidthRequest="32"
+                               HeightRequest="24"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Source="menu_list.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </Image.GestureRecognizers>
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image"
+                                             Binding="{Binding Source={x:Reference rightSliderMenu},Path=IsVisible}"
+                                             Value="True">
+                                    <Setter Property="Source"
+                                            Value="menu_list.png" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image"
+                                             Binding="{Binding Source={x:Reference rightSliderMenu},Path=IsVisible}"
+                                             Value="False">
+                                    <Setter Property="Source"
+                                            Value="menu_list_no.png" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </HorizontalStackLayout>
+            </Grid>
+
+        </Grid>
+    </sel:SimpleShell.RootPageContainer>
+    
+</sel:SimpleShell>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage x:Class="Dorisoy.DentalChair.Views.DialogPopup"
+              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+              xmlns:controls="clr-namespace:Dorisoy.DentalChair.Controls"
+              xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+              xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+              xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+              xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+              BackgroundInputTransparent="True"
+              CloseWhenBackgroundIsClicked="False">
+
+
+    <rg:PopupPage.Animation>
+        <animation:MoveAnimation PositionIn="Center"
+                                 PositionOut="Center" />
+    </rg:PopupPage.Animation>
+
+    <Border MaximumWidthRequest="200"
+            HeightRequest="60"
+            BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+            HorizontalOptions="{OnIdiom Phone='Fill',
+                                    Tablet='Fill',
+                                    Desktop='Fill'}"
+            StrokeShape="{RoundRectangle CornerRadius='5'}"
+            VerticalOptions="{OnIdiom Phone='Center',
+                                  Tablet='Center',
+                                  Desktop='Center'}">
+
+        <HorizontalStackLayout  HorizontalOptions="Center"
+                                VerticalOptions="Center">
+            <Image Margin="0"
+                   HeightRequest="35"
+                   WidthRequest="35"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Image.Source>
+                    <FontImageSource FontFamily="MauiKitIcons"
+                                     Glyph="{x:Static views:MauiKitIcons.Information}"
+                                     Size="40"
+                                     Color="{DynamicResource PrimaryColor}" />
+                </Image.Source>
+            </Image>
+            <Label Text="{Binding Title}"
+                   FontSize="18"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0" />
+        </HorizontalStackLayout>
+
+        <!--长按解锁屏幕-->
+        <Border.Behaviors>
+            <toolkit:TouchBehavior DefaultAnimationDuration="1000"
+                                   DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                   PressedBackgroundColor="#EEEEEE"
+                                   PressedOpacity="0.0"
+                                   LongPressDuration="1000"
+                                   LongPressCompleted="TouchBehavior_LongPressCompleted" />
+        </Border.Behaviors>
+    </Border>
+</rg:PopupPage>

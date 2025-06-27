@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.Scan3DPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:animations="clr-namespace:AlohaKit.Animations;assembly=AlohaKit.Animations"
+             xmlns:ctl="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:local="clr-namespace:Dorisoy.DentalChair"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:models="clr-namespace:Dorisoy.DentalChair.Models"
+             xmlns:templates="clr-namespace:Dorisoy.DentalChair.Views.Templates"
+             xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             BackgroundColor="{DynamicResource BasePageColor}"
+             Title="内口扫描">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="templates:MyCardItemTemplate">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="{DynamicResource BasePageColor}"
+          RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.RowSpan="2"
+                    Padding="0,0,0,50"
+                    VerticalScrollBarVisibility="Never">
+            <VisualElement.Behaviors>
+                <animations:ScrollViewScrollBehavior x:Name="ScrollBehavior" />
+            </VisualElement.Behaviors>
+
+            <Grid RowDefinitions="*"
+                  ColumnDefinitions="730,*,100">
+
+                <!--左侧内容-->
+                <VerticalStackLayout Grid.Column="0"
+                                     VerticalOptions="Start"
+                                     HorizontalOptions="Center">
+
+                    <Image  x:Name="animatedImage"
+                            Source="icon_50.png"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="693"
+                            HeightRequest="488" 
+                            Scale="1"
+                            Margin="15">
+                        <Image.Shadow>
+                            <Shadow Brush="Black"
+                                    Opacity="0.4"
+                                    Radius="8"
+                                    Offset="2,2" />
+                        </Image.Shadow>
+                    </Image>
+
+                </VerticalStackLayout>
+
+                <!--内容页-->
+                <FlexLayout Grid.Column="1"
+                            Wrap="Wrap"
+                            AlignItems="Center"
+                            JustifyContent="Start"
+                            Direction="Row"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Start">
+
+                    <!--对焦-->
+                    <ctl:LongSpliterButton LeftIcon="icon_51.png"
+                                           RightIcon="icon_52.png"
+                                           LeftIconWidth="50"
+                                           LeftIconHeight="50"
+                                           RightIconWidth="50"
+                                           RightIconHeight="50"
+                                           ShowSpliter="False"
+                                           RightBackground="#F8B544"/>
+
+                    <!--亮度-->
+                    <ctl:LongSpliterButton LeftIcon="icon_54.png"
+                                           RightIcon="icon_35.png"
+                                           LeftIconWidth="50"
+                                           LeftIconHeight="50"
+                                           RightIconWidth="54.6"
+                                           RightIconHeight="52"
+                                           ShowSpliter="False"
+                                           LeftBackground="#F8B544"
+                                           RightBackground="#F8B544"/>
+
+                    <!--布局-->
+                    <ctl:LongSpliterButton 
+                                           RightIcon="icon_53.png"
+                                           LeftIconWidth="50"
+                                           LeftIconHeight="50"
+                                           RightIconWidth="50"
+                                           RightIconHeight="50"
+                                           ShowSpliter="False"
+                                           LeftBackground="#C5C8CE" />
+
+                </FlexLayout>
+
+                <!--分页控制-->
+                <VerticalStackLayout Grid.Column="2"
+                                     VerticalOptions="Center"
+                                     Spacing="20">
+                    <Border WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Background="#313F4A"
+                            StrokeShape="{RoundRectangle CornerRadius=50}" />
+                    <Border WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            StrokeThickness="1"
+                            Stroke="#313F4A"
+                            Background="Transparent"
+                            StrokeShape="{RoundRectangle CornerRadius=50}" />
+                    <Image Source="icon_30.png"
+                           WidthRequest="19"
+                           HeightRequest="13"
+                           HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

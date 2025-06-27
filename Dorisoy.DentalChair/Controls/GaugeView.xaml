@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView x:Class="Dorisoy.DentalChair.Controls.GaugeView"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid HorizontalOptions="Fill"
+          VerticalOptions="Fill"
+          RowDefinitions="*">
+        <!--<ContentPresenter x:Name="contentPresenter"
+                          Background="Transparent" />-->
+
+        <GraphicsView Grid.Row="0"
+                      x:Name="graphicsView"/>
+
+        <VerticalStackLayout Grid.Row="0"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center" 
+                             Padding="0,30,0,30"
+                             Background="Transparent" 
+                             BackgroundColor="Transparent">
+            <!--定时器-->
+            <Label Text="Timeer #1"
+                   TextColor="Black"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            <!--剩余时间-->
+            <Border HorizontalOptions="Center"
+                    VerticalOptions="Center" 
+                    Padding="0">
+                <Label x:Name="gaugeRemainingTime"
+                       TextColor="Black"
+                       FontFamily="RegularFont"
+                       FontSize="60"
+                       HeightRequest="75"
+                       Text="00:00"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Border>
+            <!--计时状态-->
+            <Label x:Name="gaugeCountdownLabel"
+                   TextColor="#1E72AF"
+                   FontSize="20"
+                   Text="Start"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            <Image Grid.Column="0"
+                   Source="icon_28.png"
+                   WidthRequest="26"
+                   HeightRequest="15"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </VerticalStackLayout>
+
+ 
+    </Grid>
+</ContentView>

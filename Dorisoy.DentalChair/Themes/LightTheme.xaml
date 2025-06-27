@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="Dorisoy.DentalChair.LightTheme"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--F8B544 主亮主题-->
+    <Color x:Key="PrimaryColor">#313F4A</Color>
+    <Color x:Key="PrimaryDarkColor">#2870B0</Color>
+    <Color x:Key="PrimaryLight">#C8C8C8</Color>
+    <Color x:Key="SecondaryColor">#313F33</Color>
+
+    <Color x:Key="Green">#F8B544</Color>
+    <Color x:Key="Red">#ff4a4a</Color>
+    <Color x:Key="Orange">#ff844a</Color>
+    <Color x:Key="Blue">#00ACE4</Color>
+    <Color x:Key="HyperLink">#007BC9</Color>
+
+    <Color x:Key="Black">#000000</Color>
+    <Color x:Key="White">#ffffff</Color>
+    <Color x:Key="GrayBg">#ffffff</Color>
+    <Color x:Key="GrayShadowColor">#ffffff</Color>
+    <Color x:Key="GrayShadowBackgroundColor">#ccd2d7</Color>
+
+    <FileImageSource x:Key="ThemeSettingIcon">ic_settings_light.png</FileImageSource>
+    <FileImageSource x:Key="RtlIcon">ic_rtl_light.png</FileImageSource>
+    <FileImageSource x:Key="MenuIcon">ic_menu_light.png</FileImageSource>
+
+    <Color x:Key="BaseButtonBorderColor">Transparent</Color>
+
+    <Color x:Key="NavigationBarBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="NavigationBarTextColor">#333942</Color>
+    <Color x:Key="NavigationBarIconColor">#333942</Color>
+    <Color x:Key="MainMenuOverlayBackgroundColor">#22F1F3F5</Color>
+
+    <!--  GENERAL COLORS  -->
+    <Color x:Key="InverseTextColor">#FFFFFF</Color>
+    <Color x:Key="BrandColor">#2870B0</Color>
+    <Color x:Key="BrandNameColor">#FFFFFF</Color>
+    <Color x:Key="BaseTextColor">#333942</Color>
+    <Color x:Key="BaseIconColor">#505050</Color>
+    <Color x:Key="BaseLightTextColor">#7B7B7B</Color>
+    <Color x:Key="OverImageTextColor">#FFFFFF</Color>
+
+    <Color x:Key="BasePageColor">#00FFFFFF</Color>
+    <Color x:Key="BaseTabbedPageColor">#eef2f5</Color>
+    <Color x:Key="MainWrapperBackgroundColor">#eef2f5</Color>
+
+    <!--  INDICATOR COLORS  -->
+    <Color x:Key="OkColor">#22C064</Color>
+    <Color x:Key="ErrorColor">#FF392B</Color>
+    <Color x:Key="WarningColor">#FFC107</Color>
+    <Color x:Key="DisabledColor">#BBBBBB</Color>
+
+    <!--  BUTTONS COLORS  -->
+    <Color x:Key="SaveButtonColor">#22C064</Color>
+    <Color x:Key="DeleteButtonColor">#D50000</Color>
+
+    <Color x:Key="TranslucidButtonColor">#33FFFFFF</Color>
+
+    <!--  ENTRIES AND EDITORS COMMON PROPERTIES  -->
+    <Color x:Key="PlaceholderColor">#7B7B7B</Color>
+    <Color x:Key="EntryAndEditorsBackgroundColor">#CBD6E2</Color>
+    <Color x:Key="EntryAndEditorsBorderColor">#F5F8Fa</Color>
+
+    <!--  SEPARATORS COLORS  -->
+    <Color x:Key="ListViewSeparatorColor">#D3D3D3</Color>
+    <Color x:Key="BaseSeparatorColor">#7B7B7B</Color>
+
+    <Color x:Key="FrameBorder">#fcfcfd</Color>
+</ResourceDictionary>

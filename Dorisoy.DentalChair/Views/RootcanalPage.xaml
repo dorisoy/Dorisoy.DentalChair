@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.RootcanalPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:handlers="clr-namespace:Dorisoy.DentalChair.Handlers"
+             xmlns:local="clr-namespace:Dorisoy.DentalChair"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:ctl="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:animations="clr-namespace:AlohaKit.Animations;assembly=AlohaKit.Animations"
+             xmlns:models="clr-namespace:Dorisoy.DentalChair.Models"
+             xmlns:templates="clr-namespace:Dorisoy.DentalChair.Views.Templates"
+             xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             Title="根管治疗">
+    <ContentPage.Resources />
+
+
+    <Grid BackgroundColor="{DynamicResource BasePageColor}"
+          RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.RowSpan="2"
+                    Padding="0,0,0,50"
+                    VerticalScrollBarVisibility="Never">
+            <VisualElement.Behaviors>
+                <animations:ScrollViewScrollBehavior x:Name="ScrollBehavior" />
+            </VisualElement.Behaviors>
+
+            <Grid RowDefinitions="*"
+                  ColumnDefinitions="500,*,100">
+
+                <!--左侧内容-->
+                <VerticalStackLayout Grid.Column="0"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Fill">
+                    <!--转速-->
+                    <Grid x:Name="animatedRotationRate"
+                          VerticalOptions="Center"
+                          HorizontalOptions="End"
+                          Margin="0,0,100,0"
+                          Background="Transparent"
+                          BackgroundColor="Transparent">
+                        <Ellipse WidthRequest="130"
+                                 HeightRequest="130"
+                                 Fill="White"
+                                 Stroke="White"
+                                 StrokeThickness="1"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 x:Name="animatedRotationRate_Ellipse1">
+                            <Ellipse.Shadow>
+                                <Shadow Brush="Black"
+                                        Opacity="0.2"
+                                        Radius="100"
+                                        Offset="1,1" />
+                            </Ellipse.Shadow>
+                        </Ellipse>
+                        <Label Text="{Binding RotationRate}"
+                               FontSize="40"
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                        <Label Text="rpm"
+                               FontSize="12"
+                               TextColor="Black"
+                               VerticalOptions="End"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,30" />
+                    </Grid>
+
+                    <!--扭矩-->
+                    <Grid x:Name="animatedTorque"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Start"
+                          Margin="100,0,0,0">
+                        <Ellipse WidthRequest="218"
+                                 HeightRequest="218"
+                                 Fill="White"
+                                 Stroke="White"
+                                 StrokeThickness="1"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 x:Name="animatedRotationRate_Ellipse2">
+                            <Ellipse.Shadow>
+                                <Shadow Brush="Black"
+                                        Opacity="0.2"
+                                        Radius="100"
+                                        Offset="1,1" />
+                            </Ellipse.Shadow>
+                        </Ellipse>
+                        <Label Text="{Binding Torque}"
+                               FontSize="68"
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                        <Label Text="N.cm"
+                               FontSize="20"
+                               TextColor="Black"
+                               VerticalOptions="End"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,50" />
+                    </Grid>
+
+
+                </VerticalStackLayout>
+
+                <!--内容页-->
+                <VerticalStackLayout Grid.Column="1"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Fill">
+
+                    <Grid ColumnDefinitions="*,*,*,*"
+                          MinimumWidthRequest="834"
+                          HorizontalOptions="Fill"
+                          ColumnSpacing="0"
+                          Margin="15,0,100,10">
+
+                        <VerticalStackLayout Grid.Column="0">
+                            <Image Source="icon_60.png"
+                                   WidthRequest="140"
+                                   HeightRequest="140"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                            <Label Text="10/.04"
+                                   FontSize="25"
+                                   TextColor="Black"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Image Source="icon_61.png"
+                                   WidthRequest="140"
+                                   HeightRequest="140"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                            <Label Text="15/.04"
+                                   FontSize="25"
+                                   TextColor="Black"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="2">
+                            <Image Source="icon_62.png"
+                                   WidthRequest="140"
+                                   HeightRequest="140"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                            <Label Text="20/.06"
+                                   FontSize="25"
+                                   TextColor="Black"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="3">
+                            <Image Source="icon_63.png"
+                                   WidthRequest="140"
+                                   HeightRequest="140"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                            <Label Text="25/.06"
+                                   FontSize="25"
+                                   TextColor="Black"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </VerticalStackLayout>
+
+                    </Grid>
+
+                    <FlexLayout Wrap="Wrap"
+                                AlignItems="Center"
+                                JustifyContent="Start"
+                                Direction="Row"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start">
+
+
+                        <!--Nacl-->
+                        <ctl:LongSpliterButton LeftIcon="icon_68.png"
+                                               LeftIconWidth="56"
+                                               LeftIconHeight="66"
+                                               RightIconWidth="57"
+                                               RightIconHeight="59"
+                                               ShowSpliter="False"
+                                               LeftBackground="#F8B544" />
+                        <!--种植体-->
+                        <ctl:LongBorderButton LeftIcon="icon_65.png"
+                                              RightIcon="icon_66.png"
+                                              CenterIcon="icon_64.png"
+                                              IconWidth="28"
+                                              IconHeight="28"
+                                              CenterIconWidth="23.3"
+                                              CenterIconHeight="52" />
+                        <!--扭矩调节 StepBooster-->
+                        <ctl:StepBoosterButton LeftIcon="icon_36.png"
+                                               RightIcon="icon_37.png"
+                                               IconWidth="27.4"
+                                               IconHeight="27.4"
+                                               Label="N.cm"
+                                               Value="{Binding Torque}"
+                                               LeftCommand="{Binding ReduceTorqueCommand}"
+                                               RightCommand="{Binding IncreaseTorqueCommand}" />
+
+                        <ctl:LongSpliterButton RightIcon="icon_67.png"
+                                               LeftIconWidth="56"
+                                               LeftIconHeight="66"
+                                               RightIconWidth="57"
+                                               RightIconHeight="59"
+                                               ShowSpliter="False"
+                                               LeftBackground="#C5C8CE" />
+
+                        <ctl:LongSpliterButton LeftIcon="icon_68.png"
+                                               LeftIconWidth="56"
+                                               LeftIconHeight="66"
+                                               RightIconWidth="57"
+                                               RightIconHeight="59"
+                                               ShowSpliter="False"
+                                               RightBackground="#F8B544" />
+
+                        <!--转速调节 StepBooster-->
+                        <ctl:StepBoosterButton LeftIcon="icon_36.png"
+                                               RightIcon="icon_37.png"
+                                               IconWidth="27.4"
+                                               IconHeight="27.4"
+                                               Label="rpm"
+                                               Value="{Binding RotationRate}"
+                                               LeftCommand="{Binding ReduceRotationCommand}"
+                                               RightCommand="{Binding IncreaseRotationCommand}" />
+                    </FlexLayout>
+
+                </VerticalStackLayout>
+
+                <!--分页控制-->
+                <VerticalStackLayout Grid.Column="2"
+                                     VerticalOptions="Center"
+                                     Spacing="20">
+                    <Border WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Background="#313F4A"
+                            StrokeShape="{RoundRectangle CornerRadius=50}" />
+                    <Border WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            StrokeThickness="1"
+                            Stroke="#313F4A"
+                            Background="Transparent"
+                            StrokeShape="{RoundRectangle CornerRadius=50}" />
+                    <Image Source="icon_30.png"
+                           WidthRequest="19"
+                           HeightRequest="13"
+                           HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

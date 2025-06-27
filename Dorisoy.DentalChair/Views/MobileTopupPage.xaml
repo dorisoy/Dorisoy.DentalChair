@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.MobileTopupPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:controls="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:handlers="clr-namespace:Dorisoy.DentalChair.Handlers"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:local="clr-namespace:Dorisoy.DentalChair"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:models="clr-namespace:Dorisoy.DentalChair.Models"
+             xmlns:templates="clr-namespace:Dorisoy.DentalChair.Views.Templates"
+             xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             Title="{localization:Translate PageTitleMobileTopup}">
+    <ScrollView>
+        <StackLayout Padding="20"
+                     BackgroundColor="{DynamicResource BasePageColor}"
+                     Spacing="20">
+            <VerticalStackLayout Spacing="15">
+                <Grid ColumnDefinitions="Auto, *"
+                      ColumnSpacing="12">
+                    <!--  Icon  -->
+                    <Border Padding="5"
+                            BackgroundColor="Transparent"
+                            HeightRequest="70"
+                            HorizontalOptions="Center"
+                            Stroke="{DynamicResource DefaultBorder}"
+                            StrokeShape="{RoundRectangle CornerRadius='14'}"
+                            StrokeThickness="1"
+                            TranslationY="0"
+                            VerticalOptions="Center"
+                            WidthRequest="70">
+                        <Image HeightRequest="40"
+                               Source="ic_apps.png" />
+                    </Border>
+
+                    <!--  Number Input  -->
+                    <Grid Grid.Column="1"
+                          RowDefinitions="Auto, *">
+                        <Label FontAttributes="Bold"
+                               FontSize="13"
+                               Text="{localization:Translate StringPhoneNumber}"
+                               TextColor="{DynamicResource BaseTextColor}" />
+
+                        <Border Grid.Row="1"
+                                Padding="20,0"
+                                BackgroundColor="{DynamicResource BasePageColor}"
+                                Stroke="{DynamicResource DefaultBorder}"
+                                StrokeThickness="1">
+                            <Grid ColumnDefinitions="*,Auto">
+
+                                <handlers:BorderlessEntry FontFamily="RegularFont"
+                                                          HeightRequest="40"
+                                                          HorizontalOptions="Fill"
+                                                          Keyboard="Numeric"
+                                                          Placeholder="{localization:Translate StringPhoneNumberInput}"
+                                                          PlaceholderColor="{DynamicResource BaseTextColor}" />
+
+                                <Label Grid.Column="1"
+                                       FontFamily="MauiKitIcons"
+                                       FontSize="{OnIdiom Phone='16',
+                                                       Tablet='20',
+                                                       Desktop='20'}"
+                                       HorizontalOptions="EndAndExpand"
+                                       HorizontalTextAlignment="End"
+                                       Opacity="1"
+                                       Text="{x:Static views:MauiKitIcons.Contacts}"
+                                       TextColor="{DynamicResource PrimaryColor}"
+                                       VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <Rectangle Fill="{DynamicResource BaseSeparatorColor}"
+                           HeightRequest="1" />
+
+                <!--  Title  -->
+                <Grid Margin="0,10,0,0">
+                    <Label FontAttributes="Bold"
+                           FontFamily="BoldFont"
+                           FontSize="16"
+                           Text="{localization:Translate StringAllContact}"
+                           TextColor="{DynamicResource BaseTextColor}" />
+                </Grid>
+
+                <!--  Searchbar  -->
+                <Border Padding="0"
+                        BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                        StrokeThickness="1.5">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <Grid>
+                        <SearchBar android:Entry.ImeOptions="Search"
+                                   ios:SearchBar.SearchBarStyle="Minimal"
+                                   CancelButtonColor="{DynamicResource BaseIconColor}"
+                                   FontFamily="RegularFont"
+                                   HeightRequest="46"
+                                   HorizontalOptions="FillAndExpand"
+                                   Placeholder="{localization:Translate StringSearchContact}"
+                                   PlaceholderColor="{DynamicResource BaseLightTextColor}"
+                                   TextColor="{DynamicResource BaseTextColor}" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+
+            <!--  Contact Lists  -->
+            <CollectionView ItemsSource="{Binding ContactLists}"
+                            SelectionMode="None"
+                            VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="12"
+                                       Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <templates:ContactItemTemplate />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

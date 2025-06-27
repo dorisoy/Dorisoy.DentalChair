@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.HandpiecePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:handlers="clr-namespace:Dorisoy.DentalChair.Handlers"
+             xmlns:local="clr-namespace:Dorisoy.DentalChair"
+             xmlns:ctl="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:animations="clr-namespace:AlohaKit.Animations;assembly=AlohaKit.Animations"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:models="clr-namespace:Dorisoy.DentalChair.Models"
+             xmlns:templates="clr-namespace:Dorisoy.DentalChair.Views.Templates"
+             xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             x:Name="myHandpiecePage"
+             Title="手机仪表盘">
+
+    <ContentPage.Resources>
+        <!--静态样式-->
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="{DynamicResource BasePageColor}"
+          RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.RowSpan="2"
+                    Padding="0,0,0,50"
+                    VerticalScrollBarVisibility="Never">
+            <VisualElement.Behaviors>
+                <animations:ScrollViewScrollBehavior x:Name="ScrollBehavior" />
+            </VisualElement.Behaviors>
+
+            <Grid RowDefinitions="*"
+                  ColumnDefinitions="500,*,100">
+
+                <!--左侧内容-->
+                <VerticalStackLayout Grid.Column="0"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Start">
+
+                    <Image  x:Name="animatedImage"
+                            Source="icon_31.png"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            WidthRequest="373"
+                            HeightRequest="333">
+                    </Image>
+
+                </VerticalStackLayout>
+
+                <!--内容页-->
+
+                <VerticalStackLayout Grid.Column="1"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Start" 
+                                     Spacing="0"
+                                     Padding="0">
+
+                    <!--576 + 258 = 834-->
+                    <VerticalStackLayout HorizontalOptions="Fill" 
+                                         Margin="0">
+                        <Label FontSize="58"
+                               FontFamily="RegularFont"
+                               HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding RotationRate,StringFormat='{0:F0}'}"
+                                          CharacterSpacing="2"
+                                          TextColor="#636C72"
+                                          FontAttributes="None" />
+                                    <Span Text="rpm"
+                                          TextColor="#636C72"
+                                          FontSize="30" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Slider HeightRequest="50"
+                                Minimum="0"
+                                Maximum="12000"
+                                Value="{Binding RotationRate}"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Fill"
+                                Margin="20,0,20,0">
+                            <Slider.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="Android"
+                                        Value="#00636C72" />
+                                    <On Platform="iOS"
+                                        Value="#636C72" />
+                                    <On Platform="Windows"
+                                        Value="#636C72" />
+                                </OnPlatform>
+                            </Slider.BackgroundColor>
+                        </Slider>
+                    </VerticalStackLayout>
+
+                    <FlexLayout Wrap="Wrap"
+                                AlignItems="Center"
+                                JustifyContent="Start"
+                                Direction="Row"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start">
+
+                        <!--冲洗/喷雾-->
+                        <ctl:LongSpliterButton LeftIcon="icon_32.png"
+                                               RightIcon="icon_33.png"
+                                               LeftIconWidth="57"
+                                               LeftIconHeight="59"
+                                               RightIconWidth="57"
+                                               RightIconHeight="59"
+                                               ShowSpliter="False"
+                                               LeftBackground="#F8B544"
+                                               ClickedLeft="LongBorderButton_ClickedLeft"
+                                               ClickedRight="LongBorderButton_ClickedRight" />
+                        <!--转速调节-->
+                        <ctl:LongBorderButton LeftIcon="icon_36.png"
+                                              RightIcon="icon_37.png"
+                                              CenterIcon="icon_41.png"
+                                              IconWidth="28"
+                                              IconHeight="28"
+                                              CenterIconWidth="60"
+                                              CenterIconHeight="42"
+                                              LeftCommand="{Binding ReduceCommand}"
+                                              RightCommand="{Binding IncreaseCommand}" />
+                        <!--光纤调节-->
+                        <ctl:LongSpliterButton LeftIcon="icon_34.png"
+                                               RightIcon="icon_35.png"
+                                               LeftIconWidth="43"
+                                               LeftIconHeight="44"
+                                               RightIconWidth="54"
+                                               RightIconHeight="52"
+                                               ShowSpliter="False"
+                                               RightBackground="#F8B544"
+                                               ClickedLeft="LongBorderButton_ClickedLeft"
+                                               ClickedRight="LongBorderButton_ClickedRight" />
+                        
+                        
+                        <!--P记忆位-->
+                        <ctl:MultipleBorderButton LeftIcon="icon_38.png"
+                                                  RightIcon="icon_40.png"
+                                                  CenterIcon="icon_39.png"
+                                                  IconWidth="50"
+                                                  IconHeight="46"
+                                                  CenterIconWidth="50"
+                                                  CenterIconHeight="46"
+                                                  CenterBackground="#F8B544"
+                                                  ClickedCenter="LongBorderButton_ClickedCenter"
+                                                  ClickedLeft="LongBorderButton_ClickedLeft"
+                                                  ClickedRight="LongBorderButton_ClickedRight" />
+                        <!--出水量调节-->
+                        <ctl:LongBorderButton LeftIcon="icon_36.png"
+                                              RightIcon="icon_37.png"
+                                              CenterIcon="icon_32.png"
+                                              IconWidth="28"
+                                              IconHeight="28"
+                                              CenterIconWidth="60"
+                                              CenterIconHeight="42"
+                                              ClickedLeft="LongBorderButton_ClickedLeft"
+                                              ClickedRight="LongBorderButton_ClickedRight" />
+                    </FlexLayout>
+
+                </VerticalStackLayout>
+
+                <!--分页控制-->
+                <VerticalStackLayout Grid.Column="2"
+                                     VerticalOptions="Center"
+                                     Spacing="20">
+                    <Border WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Background="#313F4A"
+                            StrokeShape="{RoundRectangle CornerRadius=50}" />
+                    <Border WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            StrokeThickness="1"
+                            Stroke="#313F4A"
+                            Background="Transparent"
+                            StrokeShape="{RoundRectangle CornerRadius=50}" />
+                    <Image Source="icon_30.png"
+                           WidthRequest="19"
+                           HeightRequest="13"
+                           HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

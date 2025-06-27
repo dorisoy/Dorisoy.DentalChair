@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.DentalImplantationPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:handlers="clr-namespace:Dorisoy.DentalChair.Handlers"
+             xmlns:local="clr-namespace:Dorisoy.DentalChair"
+             xmlns:ctl="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:animations="clr-namespace:AlohaKit.Animations;assembly=AlohaKit.Animations"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:models="clr-namespace:Dorisoy.DentalChair.Models"
+             xmlns:templates="clr-namespace:Dorisoy.DentalChair.Views.Templates"
+             xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             x:Name="myCurrentPage"
+             Title="牙科种植">
+
+
+    <Grid RowDefinitions="*"
+          ColumnDefinitions="500,*,100">
+
+        <!--左侧内容-->
+        <VerticalStackLayout Grid.Column="0"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Start">
+            <Image  x:Name="animatedImage"
+                    Source="icon_31_1.png"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    WidthRequest="402"
+                    HeightRequest="402">
+            </Image>
+        </VerticalStackLayout>
+
+        <!--内容页-->
+        <cards:CarouselView  x:Name="carouselView"
+                             Grid.Column="1"
+                             IndicatorView="indicatorView"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Start"
+                             IsPanInteractionEnabled="True"
+                             IsPanSwipeEnabled="True"
+                             IsUserInteractionEnabled="True"
+                             IsVerticalSwipeEnabled="True"
+                             IsHorizontalOrientation="False"
+                             SelectedIndex="{Binding Position}"
+                             HeightRequest="550"
+                             Margin="0,0,0,0">
+            <cards:CarouselView.ItemsSource>
+                <x:Array Type="{x:Type VerticalStackLayout}">
+                    <VerticalStackLayout VerticalOptions="Fill"
+                                         HorizontalOptions="Center"
+                                         Spacing="0"
+                                         Padding="0">
+                        <VerticalStackLayout HorizontalOptions="Fill"
+                                             Margin="0">
+                            <Label FontSize="58"
+                                   FontFamily="RegularFont"
+                                   HorizontalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding RotationRate,StringFormat='{0:F0}'}"
+                                              CharacterSpacing="2"
+                                              TextColor="#636C72"
+                                              FontAttributes="None" />
+                                        <Span Text="rpm"
+                                              TextColor="#636C72"
+                                              FontSize="30" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Slider HeightRequest="50"
+                                    Minimum="0"
+                                    Maximum="12000"
+                                    Value="{Binding RotationRate}"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Fill"
+                                    Margin="20,0,20,0"
+                                    BackgroundColor="{OnPlatform Default='#636C72',Android='#00636C72'}" />
+                        </VerticalStackLayout>
+                        <FlexLayout Wrap="Wrap"
+                                    AlignItems="Center"
+                                    JustifyContent="Start"
+                                    Direction="Row"
+                                    VerticalOptions="Center">
+
+                            <!--BindingContext="{Binding Source={x:Reference myChairPage},Path=BindingContext}"-->
+                            <ctl:StepBoosterButton LeftIcon="icon_36.png"
+                                                   RightIcon="icon_37.png"
+                                                   IconWidth="28"
+                                                   IconHeight="28"
+                                                   Label="N.cm"
+                                                   Value="{Binding Torque}"
+                                                   LeftCommand="{Binding ReduceTorqueCommand}"
+                                                   RightCommand="{Binding IncreaseTorqueCommand}" />
+
+                            <ctl:LongBorderButton LeftIcon="icon_36.png"
+                                                  RightIcon="icon_37.png"
+                                                  CenterIcon="icon_41.png"
+                                                  IconWidth="28"
+                                                  IconHeight="28"
+                                                  CenterIconWidth="60"
+                                                  CenterIconHeight="42"
+                                                  LeftCommand="{Binding ReduceCommand}"
+                                                  RightCommand="{Binding IncreaseCommand}" />
+
+                            <ctl:LongSpliterButton LeftIcon="icon_34.png"
+                                                   RightIcon="icon_35.png"
+                                                   LeftIconWidth="43"
+                                                   LeftIconHeight="44"
+                                                   RightIconWidth="54"
+                                                   RightIconHeight="52"
+                                                   ShowSpliter="False"
+                                                   RightBackground="#F8B544" />
+
+                            <ctl:MultipleBorderButton LeftIcon="icon_38.png"
+                                                      RightIcon="icon_40.png"
+                                                      CenterIcon="icon_39.png"
+                                                      IconWidth="50"
+                                                      IconHeight="46"
+                                                      CenterIconWidth="50"
+                                                      CenterIconHeight="46"
+                                                      CenterBackground="#F8B544" />
+
+                            <ctl:LongBorderButton LeftIcon="icon_36.png"
+                                                  RightIcon="icon_37.png"
+                                                  CenterIcon="icon_32.png"
+                                                  IconWidth="28"
+                                                  IconHeight="28"
+                                                  CenterIconWidth="60"
+                                                  CenterIconHeight="42" />
+
+
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout VerticalOptions="Fill"
+                                         HorizontalOptions="Center"
+                                         Spacing="0"
+                                         Padding="0">
+                        <FlexLayout Wrap="Wrap"
+                                    AlignItems="Center"
+                                    JustifyContent="Start"
+                                    Direction="Row"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Start">
+                            <ctl:LongSpliterButton LeftIcon="icon_34.png"
+                                                   RightIcon="icon_35.png"
+                                                   LeftIconWidth="43"
+                                                   LeftIconHeight="44"
+                                                   RightIconWidth="54"
+                                                   RightIconHeight="52"
+                                                   ShowSpliter="False"
+                                                   RightBackground="#F8B544" />
+                            <ctl:LongSpliterButton LeftIcon="icon_34.png"
+                                                   RightIcon="icon_35.png"
+                                                   LeftIconWidth="43"
+                                                   LeftIconHeight="44"
+                                                   RightIconWidth="54"
+                                                   RightIconHeight="52"
+                                                   ShowSpliter="False"
+                                                   RightBackground="#F8B544" />
+                            <ctl:LongSpliterButton LeftIcon="icon_34.png"
+                                                   RightIcon="icon_35.png"
+                                                   LeftIconWidth="43"
+                                                   LeftIconHeight="44"
+                                                   RightIconWidth="54"
+                                                   RightIconHeight="52"
+                                                   ShowSpliter="False"
+                                                   RightBackground="#F8B544" />
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                </x:Array>
+            </cards:CarouselView.ItemsSource>
+        </cards:CarouselView>
+
+        <VerticalStackLayout Grid.Column="2"
+                             VerticalOptions="Center"
+                             Spacing="20">
+            <IndicatorView x:Name="indicatorView"
+                           VerticalOptions="Fill"
+                           IndicatorSize="20"
+                           Rotation="90"
+                           Position="0"
+                           HeightRequest="{OnPlatform Default=100,Android=20}"
+                           HorizontalOptions="Center"
+                           IndicatorColor="{DynamicResource BaseLightTextColor}"
+                           IndicatorsShape="Circle"
+                           SelectedIndicatorColor="#313F4A">
+            </IndicatorView>
+            <Image Source="icon_30.png"
+                   WidthRequest="19"
+                   HeightRequest="13"
+                   Margin="0,10,0,0"
+                   HorizontalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding NextCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

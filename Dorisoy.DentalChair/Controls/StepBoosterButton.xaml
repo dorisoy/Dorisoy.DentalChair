@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Dorisoy.DentalChair.Controls.StepBoosterButton">
+    <Border x:Name="MyStepBoosterButton"
+            Style="{StaticResource MenuBorderStyle}">
+        <Border.StrokeThickness>
+            <OnPlatform x:TypeArguments="x:Double">
+                <On Platform="Android"
+                    Value="0" />
+                <On Platform="iOS"
+                    Value="2" />
+                <On Platform="Windows"
+                    Value="2" />
+            </OnPlatform>
+        </Border.StrokeThickness>
+        <Grid ColumnDefinitions="*,100,*">
+            
+            <Border x:Name="MyLeftBorder"
+                    Grid.Column="0"
+                    Style="{StaticResource BorderButtonStyle}">
+                <Image x:Name="MyBorderLeftIcon"
+                       WidthRequest="27.4"
+                       HeightRequest="27.4"
+                       HorizontalOptions="Center" />
+                <Border.Behaviors>
+                    <toolkit:TouchBehavior DefaultAnimationDuration="100"
+                                           DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                           PressedBackgroundColor="#EEEEEE"
+                                           PressedOpacity="0.8" />
+                </Border.Behaviors>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Tapped="OnLeftBorderTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+
+            <Border x:Name="MyCenterBorder"
+                    Grid.Column="1"
+                    Background="Transparent">
+                <VerticalStackLayout
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center">
+                    <Label x:Name="InputLabel"
+                           Text="N.cm"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           TextColor="#636C72"/>
+                    <Label x:Name="InputTextBox" 
+                           Text="1500"
+                           FontSize="40"
+                           HorizontalOptions="Center"
+                           TextColor="Black" />
+                </VerticalStackLayout>
+            </Border>
+            
+            <Border x:Name="MyRightBorder"
+                    Grid.Column="2"
+                    Style="{StaticResource BorderButtonStyle}">
+                <Image x:Name="MyBorderRightIcon"
+                       WidthRequest="27.4"
+                       HeightRequest="27.4"
+                       HorizontalOptions="Center" />
+                <Border.Behaviors>
+                    <toolkit:TouchBehavior DefaultAnimationDuration="100"
+                                           DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                           PressedBackgroundColor="#EEEEEE"
+                                           PressedOpacity="0.8" />
+                </Border.Behaviors>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Tapped="OnRightBorderTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+            
+        </Grid>
+    </Border>
+</ContentView>

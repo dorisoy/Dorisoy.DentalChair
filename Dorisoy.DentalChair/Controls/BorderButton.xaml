@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Dorisoy.DentalChair.Controls.BorderButton">
+    <Border x:Name="MyBorderButton"
+            WidthRequest="90"
+            HeightRequest="90"
+            BackgroundColor="#FFFFFF">
+        <Image x:Name="MyBorderIcon"
+               Margin="0"
+               WidthRequest="50"
+               HeightRequest="50"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Source="icon_1.png">
+        </Image>
+        <!--<Border.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                  Tapped="OnBorderTapped" />
+        </Border.GestureRecognizers>-->
+        <Border.Behaviors>
+            <toolkit:TouchBehavior DefaultAnimationDuration="100"
+                                   DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                   PressedBackgroundColor="#EEEEEE"
+                                   PressedOpacity="0.8"
+                                   PressedScale="0.8"  
+                                   LongPressCompleted="TouchBehavior_LongPressCompleted"/>
+        </Border.Behaviors>
+    </Border>
+</ContentView>

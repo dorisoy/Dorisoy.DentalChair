@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.ChairPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:animations="clr-namespace:AlohaKit.Animations;assembly=AlohaKit.Animations"
+             xmlns:ctl="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:converters="clr-namespace:Dorisoy.DentalChair.Converters"
+             xmlns:local="clr-namespace:Dorisoy.DentalChair"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:models="clr-namespace:Dorisoy.DentalChair.Models"
+             xmlns:templates="clr-namespace:Dorisoy.DentalChair.Views.Templates" 
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+             xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             x:Name="myChairPage"
+             Title="椅位控制">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="Transparent"
+                                   StatusBarStyle="DarkContent" />
+    </ContentPage.Behaviors>
+
+    <Grid BackgroundColor="{DynamicResource BasePageColor}"
+          RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.RowSpan="2"
+                    Padding="0,0,0,50"
+                    VerticalScrollBarVisibility="Never">
+            <VisualElement.Behaviors>
+                <animations:ScrollViewScrollBehavior x:Name="ScrollBehavior" />
+            </VisualElement.Behaviors>
+
+            <Grid RowDefinitions="*"
+                  ColumnDefinitions="500,*,100">
+
+                <VerticalStackLayout Grid.Column="0"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center">
+
+                    <!--定时器-->
+                    <ctl:GaugeView x:Name="animatedGaugeView"
+                                   BindingContext="{Binding Source={x:Reference myChairPage},Path=BindingContext}"
+                                   GaugeType="Curved"
+                                   GaugeWidth="257"
+                                   GaugeHeight="257"
+                                   GaugeStrokeSize="15"
+                                   GaugeValue="{Binding Percent}"
+                                   GaugeCountdown="{Binding Countdown}"
+                                   GaugeRemainingTime="{Binding RemainingTime}"
+                                   GaugeCountdownLabel="{Binding CountdownLabel}"
+                                   GaugeColor="#007BC9"
+                                   GaugeBackgroundColor="#2EC5E8"
+                                   GaugeUnit="S"
+                                   GaugeMinimum="0"
+                                   GaugeMaximum="100"
+                                   LabelSize="36"
+                                   IsLabelShown="False"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Margin="0,0,0,0">
+                    </ctl:GaugeView>
+
+                </VerticalStackLayout>
+
+                <cards:CarouselView  x:Name="carouselView"
+                                     Grid.Column="1"
+                                     IndicatorView="indicatorView"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Start"
+                                     IsPanInteractionEnabled="True"
+                                     IsPanSwipeEnabled="True"
+                                     IsUserInteractionEnabled="True"
+                                     IsVerticalSwipeEnabled="True"
+                                     IsHorizontalOrientation="False"
+                                     SelectedIndex="{Binding Position}"
+                                     Margin="0,0,0,0">
+                    <cards:CarouselView.ItemsSource>
+                        <x:Array Type="{x:Type VerticalStackLayout}">
+                            <VerticalStackLayout VerticalOptions="Fill"
+                                                 HorizontalOptions="Start"
+                                                 Spacing="0"
+                                                 Padding="0"
+                                                 HeightRequest="500"
+                                                 WidthRequest="870">
+
+                                <FlexLayout Wrap="Wrap"
+                                            AlignItems="Start"
+                                            JustifyContent="Start"
+                                            Direction="Row"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start">
+
+                                    <ctl:LongBorderButton LeftIcon="icon_17.png"
+                                                          RightIcon="icon_18.png"
+                                                          CenterIcon="icon_12.png"
+                                                          IconWidth="20"
+                                                          IconHeight="32"
+                                                          LeftSelected="True"
+                                                          RightSelected="True"
+                                                          CenterIconWidth="50"
+                                                          CenterIconHeight="50"/>
+
+                                    <ctl:LongBorderButton LeftIcon="icon_19.png"
+                                                          RightIcon="icon_20.png"
+                                                          CenterIcon="icon_12.png"
+                                                          IconWidth="35"
+                                                          IconHeight="35"
+                                                          CenterIconWidth="50"
+                                                          CenterIconHeight="50" />
+                                    
+                                    <ctl:LongSpliterButton LeftIcon="icon_23.png"
+                                                           RightIcon="icon_13.png"
+                                                           LeftIconWidth="50"
+                                                           LeftIconHeight="50"
+                                                           RightIconWidth="50"
+                                                           RightIconHeight="50"
+                                                           LeftSelected="True"
+                                                           RightSelected="False"/>
+                                    <!--椅位：急救、0-->
+                                    <ctl:LongSpliterButton LeftIcon="icon_26.png"
+                                                           RightIcon="icon_27.png"
+                                                           BorderColor="#2870B0"
+                                                           LeftIconWidth="50"
+                                                           LeftIconHeight="50"
+                                                           RightIconWidth="50"
+                                                           RightIconHeight="50"
+                                                           LeftCommand="{Binding ChairControlFirstAidCommand}"
+                                                           RightCommand="{Binding ChairControl0Command}"/>
+
+                                    <!--椅位：俯仰-->
+                                    <ctl:LongBorderButton LeftIcon="icon_19.png"
+                                                          RightIcon="icon_20.png"
+                                                          CenterIcon="icon_29.png"
+                                                          IconWidth="35"
+                                                          IconHeight="35"
+                                                          CenterIconWidth="50"
+                                                          CenterIconHeight="50"
+                                                          LeftPressedCommand="{Binding ChairControlUpwardCommand}"
+                                                          LeftReleasedCommand="{Binding ChairStopCommand}"
+                                                          RightPressedCommand="{Binding ChairControlProneCommand}"
+                                                          RightReleasedCommand="{Binding ChairStopCommand}"/>                                                          
+
+                                    <!--器械盘：升降-->
+                                    <ctl:LongBorderButton LeftIcon="icon_21.png"
+                                                          RightIcon="icon_22.png"
+                                                          CenterIcon="icon_14.png"
+                                                          IconWidth="35"
+                                                          IconHeight="35"
+                                                          CenterIconWidth="74"
+                                                          CenterIconHeight="27"
+                                                          LeftPressedCommand="{Binding InstrumentTrayDownCommand}"
+                                                          LeftReleasedCommand="{Binding InstrumentTrayStopCommand}"
+                                                          RightPressedCommand="{Binding InstrumentTrayUpCommand}"
+                                                          RightReleasedCommand="{Binding InstrumentTrayStopCommand}"/>
+
+                                    <!--椅位：1、2-->
+                                    <ctl:LongSpliterButton LeftIcon="icon_24.png"
+                                                           RightIcon="icon_25.png"
+                                                           BorderColor="Red"
+                                                           LeftIconWidth="50"
+                                                           LeftIconHeight="50"
+                                                           RightIconWidth="50"
+                                                           RightIconHeight="50"
+                                                           LeftCommand="{Binding ChairControl1Command}"
+                                                           RightCommand="{Binding ChairControl2Command}"/>
+
+                                    <!--椅位：升、降-->
+                                    <ctl:LongBorderButton LeftIcon="icon_21.png"
+                                                          RightIcon="icon_22.png"
+                                                          CenterIcon="icon_29.png"
+                                                          IconWidth="35"
+                                                          IconHeight="35"
+                                                          CenterIconWidth="74"
+                                                          CenterIconHeight="27"
+                                                          LeftPressedCommand="{Binding ChairUpCommand}"
+                                                          LeftReleasedCommand="{Binding ChairStopCommand}"
+                                                          RightPressedCommand="{Binding ChairDownCommand}"
+                                                          RightReleasedCommand="{Binding ChairStopCommand}"/>
+
+                                    <!--椅位：水温(加热水杯)、灯-->
+                                    <ctl:LongSpliterButton LeftIcon="icon_15.png"
+                                                           RightIcon="icon_16.png"
+                                                           Background="#F8B544"
+                                                           CenterBackground="#F8B544"
+                                                           LeftBackground="#F8B544"
+                                                           RightBackground="#F8B544"
+                                                           LeftIconWidth="50"
+                                                           LeftIconHeight="50"
+                                                           RightIconWidth="50"
+                                                           RightIconHeight="50"
+                                                           LeftCommand="{Binding HotWaterOnCommand}"
+                                                           RightCommand="{Binding LightTurnOnOffCommand}"/>
+                                </FlexLayout>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout VerticalOptions="Fill"
+                                                 HorizontalOptions="Fill"
+                                                 Spacing="0"
+                                                 Padding="0"
+                                                 HeightRequest="500"
+                                                 WidthRequest="870">
+
+                                <FlexLayout Wrap="Wrap"
+                                            AlignItems="Start"
+                                            JustifyContent="Start"
+                                            Direction="Row"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Fill">
+
+
+                                    <ctl:LongSpliterButton LeftIcon="icon3.png"
+                                                           RightIcon="icon4.png"
+                                                           LeftIconWidth="50"
+                                                           LeftIconHeight="50"
+                                                           RightIconWidth="50"
+                                                           RightIconHeight="50" />
+                            
+                                </FlexLayout>
+                            </VerticalStackLayout>
+                        </x:Array>
+                    </cards:CarouselView.ItemsSource>
+                </cards:CarouselView>
+
+                <!--分页控制-->
+                <VerticalStackLayout Grid.Column="2"
+                                     VerticalOptions="Center"
+                                     Spacing="20" 
+                                     HorizontalOptions="Center">
+                    <IndicatorView x:Name="indicatorView"
+                                   VerticalOptions="Fill"
+                                   IndicatorSize="20"
+                                   Rotation="90"
+                                   Position="0"
+                                   HeightRequest="{OnPlatform Default=100,Android=20}"
+                                   HorizontalOptions="Center"
+                                   IndicatorColor="{DynamicResource BaseLightTextColor}"
+                                   IndicatorsShape="Circle"
+                                   SelectedIndicatorColor="#313F4A">
+                        <!--<IndicatorView.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android"
+                                    Value="20" />
+                                <On Platform="iOS"
+                                    Value="60" />
+                                <On Platform="Default"
+                                    Value="100" />
+                            </OnPlatform>
+                        </IndicatorView.HeightRequest>-->
+                    </IndicatorView>
+                    <Image Source="icon_30.png"
+                           WidthRequest="19"
+                           HeightRequest="13"
+                           Margin="0,10,0,0"
+                           HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding NextCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Border x:Class="Dorisoy.DentalChair.Controls.RoundedCornerImage"
+        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:converters="clr-namespace:Dorisoy.DentalChair.Converters"
+        x:Name="Root"
+        Padding="0"
+        HorizontalOptions="{OnIdiom Phone='FillAndExpand',
+                                Tablet='CenterAndExpand',
+                                Desktop='CenterAndExpand'}"
+        Stroke="Transparent">
+    <Border.StrokeShape>
+        <RoundRectangle CornerRadius="{Binding CornerRadius, Source={x:Reference Root}}" />
+    </Border.StrokeShape>
+    <Image Aspect="{OnIdiom Phone='AspectFill', Desktop='AspectFit', Tablet='AspectFill'}"
+           Source="{Binding Source, Source={x:Reference Root}}" />
+</Border>

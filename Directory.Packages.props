@@ -1,0 +1,42 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.Maui.Controls" Version="9.0.40" />
+    <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.40" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Localization" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Maui.Controls.Core" Version="9.0.40" />
+    <PackageVersion Include="Microsoft.Maui.Controls.Maps" Version="9.0.40" />
+    <PackageVersion Include="AlohaKit.Animations" Version="1.1.0" />
+    <PackageVersion Include="CommunityToolkit.Maui" Version="11.1.0" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageVersion Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2" />
+    <PackageVersion Include="Mopups" Version="1.3.2" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="PanCardView.Maui" Version="1.0.0" />
+    <PackageVersion Include="Plugin.Fingerprint" Version="3.0.0-beta.1" />
+    <PackageVersion Include="PropertyChanged.Fody" Version="4.1.0" />
+    <PackageVersion Include="RGPopup.Maui" Version="1.1.2" />
+    <PackageVersion Include="SimpleToolkit.SimpleShell.Maui" Version="1.0.1" />
+    <PackageVersion Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
+    <PackageVersion Include="sqlite-net-pcl" Version="1.9.172" />
+    <PackageVersion Include="System.IO.Ports" Version="9.0.2" />
+    <!--通信框架-->
+    <PackageVersion Include="TorchSocket.SerialPorts" Version="2.0.1" />
+    <PackageVersion Include="TorchSocketPro.CAN" Version="2.0.1" />
+    <PackageVersion Include="TorchSocketPro.Modbus" Version="2.0.1" />
+    <!--Test-->
+    <PackageVersion Include="coverlet.collector" Version="6.0.3" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageVersion Include="NUnit" Version="4.3.2" />
+    <PackageVersion Include="NUnit.Analyzers" Version="4.6.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="4.6.0" />
+    <!--xunit-->
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage x:Class="Dorisoy.DentalChair.Views.LockPopup"
+              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+              xmlns:controls="clr-namespace:Dorisoy.DentalChair.Controls"
+              xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+              xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+              xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+              xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+              xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+              helpers:ViewModelLocator.AutoWireViewModel="True"
+              BackgroundInputTransparent="False"
+              CloseWhenBackgroundIsClicked="False">
+
+    
+    <rg:PopupPage.Animation>
+        <animation:MoveAnimation PositionIn="Center"
+                                 PositionOut="Center" />
+    </rg:PopupPage.Animation>
+
+    <Border WidthRequest="200"
+            HeightRequest="200"
+            BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+            HorizontalOptions="{OnIdiom Phone='Fill',
+                                    Tablet='Fill',
+                                    Desktop='Fill'}"
+            StrokeShape="{RoundRectangle CornerRadius='20'}"
+            VerticalOptions="{OnIdiom Phone='Center',
+                                  Tablet='Center',
+                                  Desktop='Center'}">
+
+        <VerticalStackLayout  HorizontalOptions="Center"
+                              VerticalOptions="Center">
+            <Image Margin="0"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Image.Source>
+                    <FontImageSource FontFamily="MauiKitIcons"
+                                     Glyph="{x:Static views:MauiKitIcons.LockOutline}"
+                                     Size="60"
+                                     Color="{DynamicResource PrimaryColor}" />
+                </Image.Source>
+            </Image>
+            <Label Text="长按解锁屏幕"
+                   FontSize="14"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0" />
+        </VerticalStackLayout>
+        
+        <!--<Border.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </Border.GestureRecognizers>-->
+        
+        <!--长按解锁屏幕-->
+        <Border.Behaviors>
+            <toolkit:TouchBehavior DefaultAnimationDuration="1000"
+                                   DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                   PressedBackgroundColor="#EEEEEE"
+                                   PressedOpacity="0.0"
+                                   LongPressDuration="1000"
+                                   LongPressCommand="{Binding CloseLockCommand}" LongPressCompleted="TouchBehavior_LongPressCompleted"/>
+        </Border.Behaviors>
+    </Border>
+</rg:PopupPage>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.Onboardings.DemoStartPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
+             Shell.PresentationMode="Animated">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="Transparent"
+                                   StatusBarStyle="DarkContent" />
+    </ContentPage.Behaviors>
+
+    <Grid RowDefinitions="*,Auto">
+        <Grid Grid.RowSpan="2"
+              ColumnDefinitions="*,*">
+            <Image Grid.Column="0"
+                   Margin="0"
+                   WidthRequest="400"
+                   HeightRequest="100"
+                   Opacity="0.9"
+                   Source="kleft.png"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <Image Grid.Column="2"
+                   Margin="0"
+                   WidthRequest="659"
+                   HeightRequest="179"
+                   Opacity="0.9"
+                   Source="kright.png"
+                   HorizontalOptions="End"
+                   VerticalOptions="End" />
+        </Grid>
+        <VerticalStackLayout Padding="30"
+                             HorizontalOptions="Fill"
+                             Spacing="20"
+                             VerticalOptions="Center"
+                             ZIndex="1">
+            <Image BackgroundColor="Transparent"
+                   HeightRequest="250"
+                   HorizontalOptions="Center"
+                   Source="wallet_payment.png"
+                   VerticalOptions="Center" />
+
+            <Label Margin="0,-40,0,0"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource Title2}"
+                   CharacterSpacing="10"
+                   Text="中华有昆仑    微笑爱家人"
+                   TextColor="#e5d667" />
+            <Border Padding="15,5"
+                    BackgroundColor="#364149"
+                    HorizontalOptions="Center"
+                    Stroke="Transparent"
+                    StrokeShape="{RoundRectangle CornerRadius='8'}">
+                <Label FontSize="12"
+                       HorizontalOptions="Center"
+                       Text="Version 2.0"
+                       TextColor="#C8C8C8"
+                       VerticalOptions="Center" />
+            </Border>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1"
+                             Padding="30,0,30,50"
+                             HorizontalOptions="Fill"
+                             Spacing="15"
+                             VerticalOptions="End"
+                             ZIndex="1000">
+            <!--跳过-->
+            <Button Clicked="Skip_Clicked"
+                    CornerRadius="25"
+                    BorderWidth="1"
+                    FontSize="14"
+                    HeightRequest="50"
+                    MaximumWidthRequest="150"
+                    Text="{localization:Translate ButtonSkip}"
+                    TextColor="#e5d667" />
+        </VerticalStackLayout>
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,1"
+                                 EndPoint="0,0">
+                <GradientStop Offset="0.1"
+                              Color="{DynamicResource LinearGradientStartColor}" />
+                <GradientStop Offset="1.1"
+                              Color="{DynamicResource LinearGradientEndColor}" />
+            </LinearGradientBrush>
+        </Grid.Background>
+    </Grid>
+</ContentPage>

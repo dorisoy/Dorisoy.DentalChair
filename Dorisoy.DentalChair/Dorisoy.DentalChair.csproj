@@ -1,0 +1,624 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net9.0-android35.0;net9.0-ios;</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Dorisoy.DentalChair</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!--使用不安全代码会绕过垃圾回收和其他安全检查，因此仅当必要时才使用;确保目标平台允许不安全操作；在某些受限环境中可能不支持-->
+		<!--<AllowUnsafeBlocks>true</AllowUnsafeBlocks>-->
+		<!-- 启用允许泛型接口代码生成 -->
+		<CsWinRTGenerateProjectionRefs>true</CsWinRTGenerateProjectionRefs>
+
+		<!-- Display name -->
+		<ApplicationTitle>Dorisoy.DentalChair</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.tls.Dorisoy.DentalChair</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">25.0</SupportedOSPlatformVersion>
+		
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041.0</SupportedOSPlatformVersion>
+		
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041.0</TargetPlatformMinVersion>
+
+		
+		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+		<GenerateTestArtifacts>True</GenerateTestArtifacts>
+		<AppInstallerUri>C:\</AppInstallerUri>
+		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+		<Copyright>© Doirsoy. All rights reserved.</Copyright>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<LangVersion>13.0</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
+		<CreatePackage>false</CreatePackage>
+		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationTitle>Dorisoy.DentalChair</ApplicationTitle>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+		<AndroidPackageFormat>aab</AndroidPackageFormat>
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
+		<CodesignKey>Apple Distribution: Ai Pham Huu (78XZM2329V)</CodesignKey>
+		<CodesignProvision>iOS Distribution</CodesignProvision>
+		<ProvisioningType>manual</ProvisioningType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<AndroidPackageFormat>aab</AndroidPackageFormat>
+		<DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android35.0|AnyCPU'">
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<ApplicationTitle>Dorisoy.DentalChair</ApplicationTitle>
+		<DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
+		<RunAOTCompilation>False</RunAOTCompilation>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
+		<DefineConstants>$(DefineConstants);WINDOWS;WINDOWS10_0_19041_0</DefineConstants>
+		<ApplicationTitle>Dorisoy.DentalChair</ApplicationTitle>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
+		<DefineConstants>$(DefineConstants);WINDOWS;WINDOWS10_0_19041_0</DefineConstants>
+		<ApplicationTitle>Dorisoy.DentalChair</ApplicationTitle>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android35.0|AnyCPU'">
+		<ApplicationTitle>Dorisoy.DentalChair</ApplicationTitle>
+		<DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
+		<RunAOTCompilation>False</RunAOTCompilation>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
+		<ApplicationTitle>Dorisoy.DentalChair</ApplicationTitle>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+		<DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
+	</PropertyGroup>
+	
+
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#EAEEF6" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splashscreen.svg" Color="#FFFFFF" BaseSize="300,300" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+	
+
+
+	<ItemGroup>
+	  <AndroidResource Remove="Views\Base\**" />
+	  <Compile Remove="Views\Base\**" />
+	  <EmbeddedResource Remove="Views\Base\**" />
+	  <MauiCss Remove="Views\Base\**" />
+	  <MauiXaml Remove="Views\Base\**" />
+	  <None Remove="Views\Base\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Compile Remove="AppShell - backup.xaml.cs" />
+		<Compile Remove="Controls\SharedViews\IndicatorViewTemplate.xaml.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<MauiXaml Remove="Controls\SharedViews\IndicatorViewTemplate.xaml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="Resources\Svg.zip" />
+		<None Remove="Resources\Svg\icon3.svg" />
+		<None Remove="Resources\Svg\icon4.svg" />
+		<None Remove="Resources\Svg\icon_31_1.png" />
+		<None Remove="Resources\Svg\icon_78.svg" />
+		<None Remove="Resources\Svg\icon_78_selected.svg" />
+		<None Remove="Resources\Svg\kleft.png" />
+		<None Remove="Resources\Svg\kright.png" />
+		<None Remove="Resources\Svg\s1.svg" />
+		<None Remove="Resources\Svg\s1_1.svg" />
+		<None Remove="Resources\Svg\s2.svg" />
+		<None Remove="Resources\Svg\s2_1.svg" />
+		<None Remove="Resources\Svg\s3.svg" />
+		<None Remove="Resources\Svg\s3_1.svg" />
+		<None Remove="Resources\Svg\s4.svg" />
+		<None Remove="Resources\Svg\s4_1.svg" />
+		<None Remove="Resources\Svg\s5.svg" />
+		<None Remove="Resources\Svg\s5_1.svg" />
+		<None Remove="Resources\Svg\s6.svg" />
+		<None Remove="Resources\Svg\s6_1.svg" />
+		<None Remove="Resources\Svg\s7.svg" />
+		<None Remove="Resources\Svg\s7_1.svg" />
+		<None Remove="Resources\Svg\s8.svg" />
+		<None Remove="Resources\Svg\s8_1.svg" />
+		<None Remove="Resources\Svg\s9.svg" />
+		<None Remove="Resources\Svg\s9_1.svg" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<MauiImage Include="Resources\Svg\bottom_bar.svg" />
+		<MauiImage Include="Resources\Svg\chair.svg" TintColor="#C8C8C8" />
+		<MauiImage Include="Resources\Svg\chair_selected.svg" TintColor="#F8B544" />
+
+		<MauiImage Include="Resources\Svg\handpiece.svg" TintColor="#C8C8C8" />
+		<MauiImage Include="Resources\Svg\handpiece_selected.svg" TintColor="#F8B544" />
+		<MauiImage Include="Resources\Svg\icon3.svg" />
+		<MauiImage Include="Resources\Svg\icon4.svg" />
+		<MauiImage Include="Resources\Svg\icon_31_1.png" />
+
+		<MauiImage Include="Resources\Svg\icon_78.svg" TintColor="#C8C8C8" />
+		<MauiImage Include="Resources\Svg\icon_78_selected.svg" TintColor="#F8B544" />
+
+		<MauiImage Include="Resources\Svg\icon_1.svg" />
+		<MauiImage Include="Resources\Svg\icon_10.svg" />
+		<MauiImage Include="Resources\Svg\icon_11.svg" />
+		<MauiImage Include="Resources\Svg\icon_12.svg" />
+		<MauiImage Include="Resources\Svg\icon_13.svg" />
+		<MauiImage Include="Resources\Svg\icon_14.svg" />
+		<MauiImage Include="Resources\Svg\icon_15.svg" />
+		<MauiImage Include="Resources\Svg\icon_16.svg" />
+		<MauiImage Include="Resources\Svg\icon_17.svg" />
+		<MauiImage Include="Resources\Svg\icon_18.svg" />
+		<MauiImage Include="Resources\Svg\icon_19.svg" />
+		<MauiImage Include="Resources\Svg\icon_2.svg" />
+		<MauiImage Include="Resources\Svg\icon_20.svg" />
+		<MauiImage Include="Resources\Svg\icon_21.svg" />
+		<MauiImage Include="Resources\Svg\icon_22.svg" />
+		<MauiImage Include="Resources\Svg\icon_23.svg" />
+		<MauiImage Include="Resources\Svg\icon_24.svg" />
+		<MauiImage Include="Resources\Svg\icon_25.svg" />
+		<MauiImage Include="Resources\Svg\icon_26.svg" />
+		<MauiImage Include="Resources\Svg\icon_27.svg" />
+		<MauiImage Include="Resources\Svg\icon_28.svg" />
+		<MauiImage Include="Resources\Svg\icon_29.svg" />
+		<MauiImage Include="Resources\Svg\icon_3.svg" />
+		<MauiImage Include="Resources\Svg\icon_30.svg" />
+		<MauiImage Include="Resources\Svg\icon_31.png" />
+		<MauiImage Include="Resources\Svg\icon_32.svg" />
+		<MauiImage Include="Resources\Svg\icon_33.svg" />
+		<MauiImage Include="Resources\Svg\icon_34.svg" />
+		<MauiImage Include="Resources\Svg\icon_35.svg" />
+		<MauiImage Include="Resources\Svg\icon_36.svg" />
+		<MauiImage Include="Resources\Svg\icon_37.svg" />
+		<MauiImage Include="Resources\Svg\icon_38.svg" />
+		<MauiImage Include="Resources\Svg\icon_39.svg" />
+		<MauiImage Include="Resources\Svg\icon_4.svg" />
+		<MauiImage Include="Resources\Svg\icon_40.svg" />
+		<MauiImage Include="Resources\Svg\icon_41.svg" />
+		<MauiImage Include="Resources\Svg\icon_5.svg" />
+		<MauiImage Include="Resources\Svg\icon_50.png" />
+		<MauiImage Include="Resources\Svg\icon_51.svg" />
+		<MauiImage Include="Resources\Svg\icon_52.svg" />
+		<MauiImage Include="Resources\Svg\icon_53.svg" />
+		<MauiImage Include="Resources\Svg\icon_54.svg" />
+		<MauiImage Include="Resources\Svg\icon_55.svg" />
+		<MauiImage Include="Resources\Svg\icon_6.svg" />
+		<MauiImage Include="Resources\Svg\icon_60.png" />
+		<MauiImage Include="Resources\Svg\icon_61.png" />
+		<MauiImage Include="Resources\Svg\icon_62.png" />
+		<MauiImage Include="Resources\Svg\icon_63.png" />
+		<MauiImage Include="Resources\Svg\icon_64.svg" />
+		<MauiImage Include="Resources\Svg\icon_65.svg" />
+		<MauiImage Include="Resources\Svg\icon_66.svg" />
+		<MauiImage Include="Resources\Svg\icon_67.svg" />
+		<MauiImage Include="Resources\Svg\icon_68.svg" />
+		<MauiImage Include="Resources\Svg\icon_7.svg" />
+		<MauiImage Include="Resources\Svg\icon_71.svg" />
+		<MauiImage Include="Resources\Svg\icon_72.svg" />
+		<MauiImage Include="Resources\Svg\icon_73.svg" />
+		<MauiImage Include="Resources\Svg\icon_74.svg" />
+		<MauiImage Include="Resources\Svg\icon_75.svg" />
+		<MauiImage Include="Resources\Svg\icon_76.svg" />
+		<MauiImage Include="Resources\Svg\icon_77.svg" />
+		<MauiImage Include="Resources\Svg\icon_8.svg" />
+		<MauiImage Include="Resources\Svg\icon_9.svg" />
+
+		<MauiImage Include="Resources\Svg\implant.svg" TintColor="#C8C8C8" />
+		<MauiImage Include="Resources\Svg\implant_selected.svg" TintColor="#F8B544" />
+		<MauiImage Include="Resources\Svg\kleft.png" />
+		<MauiImage Include="Resources\Svg\kright.png" />
+
+		<MauiImage Include="Resources\Svg\leftbar_bg.svg" />
+		<MauiImage Include="Resources\Svg\menu_list.svg" />
+
+		<MauiImage Include="Resources\Svg\menu_list_no.svg" TintColor="#C8C8C8" />
+		<MauiImage Include="Resources\Svg\rasp.svg" TintColor="#C8C8C8" />
+
+		<MauiImage Include="Resources\Svg\rasp_selected.svg" TintColor="#F8B544" />
+		<MauiImage Include="Resources\Svg\rightbar_bg.svg" />
+		<MauiImage Include="Resources\Svg\s1.svg" />
+		<MauiImage Include="Resources\Svg\s1_1.svg" TintColor="#FFFFFF" />
+		<MauiImage Include="Resources\Svg\s2.svg" />
+		<MauiImage Include="Resources\Svg\s2_1.svg" TintColor="#FFFFFF" />
+		<MauiImage Include="Resources\Svg\s3.svg" />
+		<MauiImage Include="Resources\Svg\s3_1.svg" TintColor="#FFFFFF" />
+		<MauiImage Include="Resources\Svg\s4.svg" />
+		<MauiImage Include="Resources\Svg\s4_1.svg" TintColor="#FFFFFF" />
+		<MauiImage Include="Resources\Svg\s5.svg" />
+		<MauiImage Include="Resources\Svg\s5_1.svg" TintColor="#FFFFFF" />
+		<MauiImage Include="Resources\Svg\s6.svg" />
+		<MauiImage Include="Resources\Svg\s6_1.svg" TintColor="#FFFFFF" />
+		<MauiImage Include="Resources\Svg\s7.svg" />
+		<MauiImage Include="Resources\Svg\s7_1.svg" TintColor="#FFFFFF" />
+		<MauiImage Include="Resources\Svg\s8.svg" />
+		<MauiImage Include="Resources\Svg\s8_1.svg" TintColor="#FFFFFF" />
+		<MauiImage Include="Resources\Svg\s9.svg" />
+		<MauiImage Include="Resources\Svg\s9_1.svg" TintColor="#FFFFFF" />
+
+
+		<MauiImage Include="Resources\Svg\scan3d.svg" TintColor="#C8C8C8" />
+		<MauiImage Include="Resources\Svg\scan3d_selected.svg" TintColor="#F8B544" />
+
+		<MauiImage Include="Resources\Svg\spliter.svg" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<MauiImage Update="Resources\Images\arrow_left.svg" />
+		<MauiImage Update="Resources\Images\bed.svg" />
+		<MauiImage Update="Resources\Images\categories.svg" />
+		<MauiImage Update="Resources\Images\chevron_back.svg" />
+		<MauiImage Update="Resources\Images\chevron_down.svg" />
+		<MauiImage Update="Resources\Images\chevron_forward.svg" />
+		<MauiImage Update="Resources\Images\choose_gradient.svg" />
+		<MauiImage Update="Resources\Images\cog.svg" />
+		<MauiImage Update="Resources\Images\confirm_gradient.svg" />
+		<MauiImage Update="Resources\Images\curved_mask.svg" />
+		<MauiImage Update="Resources\Images\deliver_gradient.svg" />
+		<MauiImage Update="Resources\Images\dribbble.svg" />
+		<MauiImage Update="Resources\Images\expand.svg" />
+		<MauiImage Update="Resources\Images\explore.svg" />
+		<MauiImage Update="Resources\Images\featured.svg" />
+		<MauiImage Update="Resources\Images\github.svg" />
+		<MauiImage Update="Resources\Images\home.svg" />
+		<MauiImage Update="Resources\Images\home_outline.svg" />
+		<MauiImage Update="Resources\Images\ic_settings.svg" />
+		<MauiImage Update="Resources\Images\instagram.svg" />
+		<MauiImage Update="Resources\Images\no_internet.svg" />
+		<MauiImage Update="Resources\Images\pin.svg" />
+		<MauiImage Update="Resources\Images\search.svg" />
+		<MauiImage Update="Resources\Images\sign_in.svg" />
+		<MauiImage Update="Resources\Images\sign_out.svg" />
+		<MauiImage Update="Resources\Images\svg.svg" />
+		<MauiImage Update="Resources\Images\twitter.svg" />
+		<MauiImage Update="Resources\Images\youtube.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+		<PackageReference Include="Microsoft.Extensions.Localization" />
+		<PackageReference Include="Microsoft.Maui.Controls.Core" />
+		<PackageReference Include="AlohaKit.Animations" />
+		<PackageReference Include="CommunityToolkit.Maui" />
+		<PackageReference Include="CommunityToolkit.Mvvm" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" />
+		<PackageReference Include="Mopups" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="PanCardView.Maui" />
+		<PackageReference Include="PropertyChanged.Fody" />
+		<PackageReference Include="RGPopup.Maui" />
+		<PackageReference Include="SimpleToolkit.SimpleShell.Maui" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" />
+		<PackageReference Include="sqlite-net-pcl" />
+		<PackageReference Include="System.IO.Ports" />
+		<PackageReference Include="TorchSocket.SerialPorts" />
+		<PackageReference Include="TorchSocketPro.Modbus" />
+	</ItemGroup>
+
+
+	<!-- USB串口Android绑定项目 -->
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android35.0'">
+		<ProjectReference Include="..\Dorisoy.DentalChair.Droid.SerialPort.Binding\Dorisoy.DentalChair.Droid.SerialPort.Binding.csproj" />
+	</ItemGroup>
+
+	<!-- USB串口MaciOS绑定项目 -->
+	<!--<ItemGroup Condition="$(TargetFramework.Contains('ios')))">
+	  <ProjectReference Include="..\Dorisoy.DentalChair.MACiOS.UsbSerial.Binding\Dorisoy.DentalChair.MACiOS.UsbSerial.Binding.csproj" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<MauiXaml Update="Controls\AppLogo.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\CustomIndicatorView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\DialogPopup.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\StepBoosterButton.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\MultipleBorderButton.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\LongSpliterButton.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\LongBorderButton.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\BorderButton.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\GaugeView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\NumericUpDown.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\AvatarWithStatus.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\BadgeView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\ColorEditor.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\CustomLoadingIndicator.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\ErrorIndicator.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\HeaderTemplate.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\LoadingIndicator.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\RoundedCornerImage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\SimpleLoadingIndicator.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\SharedViews\Tags.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="AppShell.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Styles\Buttons.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Styles\Colors.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Styles\Icons.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Styles\Labels.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Styles\Styles.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Themes\DarkTheme.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Themes\LightTheme.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AccountPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AccountUpdatePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SettingPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\RootcanalPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ChangePasswordPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ForgotPasswordPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ChairPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\LoginPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MobileTopupPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Scan3DPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\NotificationsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Onboardings\DemoStartPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Onboardings\StartBackgroundPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Onboardings\StartPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\PasswordVerificationPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\DentalImplantationPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\HandpiecePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\Setting3.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\Setting4.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\Setting6.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\Setting7.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\Setting8.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\Setting5.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\Setting2.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\Setting1.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Templates\ContactItemTemplate.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Templates\MyCardItemTemplate.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Templates\NotificationItemTemplate.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Templates\ServiceItemTemplate.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Templates\TransactionItemTemplate.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\LockPopup.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Controls\DialogPopup.xaml.cs">
+		  <DependentUpon>DialogPopup.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\StepBoosterButton.xaml.cs">
+			<DependentUpon>StepBoosterButton.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\MultipleBorderButton.xaml.cs">
+			<DependentUpon>MultipleBorderButton.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\LongSpliterButton.xaml.cs">
+			<DependentUpon>LongSpliterButton.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\LongBorderButton.xaml.cs">
+			<DependentUpon>LongBorderButton.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\SettingPage.xaml.cs">
+		  <DependentUpon>SettingPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\LoginPage.xaml.cs">
+		  <DependentUpon>LoginPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\RootcanalPage.xaml.cs">
+			<DependentUpon>RootcanalPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\DentalImplantationPage.xaml.cs">
+			<DependentUpon>DentalImplantationPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\ChairPage.xaml.cs">
+			<DependentUpon>ChairPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\LockPopup.xaml.cs">
+			<DependentUpon>LockPopup.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\HandpiecePage.xaml.cs">
+			<DependentUpon>HandpiecePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Scan3DPage.xaml.cs">
+			<DependentUpon>Scan3DPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Settings\Setting8.xaml.cs">
+		  <DependentUpon>Setting8.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Settings\Setting7.xaml.cs">
+		  <DependentUpon>Setting7.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Settings\Setting6.xaml.cs">
+		  <DependentUpon>Setting6.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Settings\Setting5.xaml.cs">
+		  <DependentUpon>Setting5.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Settings\Setting4.xaml.cs">
+		  <DependentUpon>Setting4.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Settings\Setting3.xaml.cs">
+		  <DependentUpon>Setting3.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Settings\Setting2.xaml.cs">
+		  <DependentUpon>Setting2.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EditorConfigFiles Remove="E:\Dorisoy.DentalChair\Dorisoy.DentalChair\Dorisoy.DentalChair\Dorisoy.DentalChair\.editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="E:\Dorisoy.DentalChair\Dorisoy.DentalChair\Dorisoy.DentalChair\Dorisoy.DentalChair\.editorconfig" />
+	</ItemGroup>
+
+	<!--使用 DOTNET_DiagnosticPorts 设置 AndroidEnvironment 环境变量-->
+	<!--<ItemGroup Condition="'$(AndroidEnableProfiler)'=='true'">
+		<AndroidEnvironment Include="app.env" />
+	</ItemGroup>-->
+	
+</Project>

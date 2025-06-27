@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Dorisoy.DentalChair.Controls.MultipleBorderButton">
+    <Border x:Name="MyMultipleBorderButton"
+            Style="{StaticResource MenuBorderStyle2}">
+        <Border.StrokeThickness>
+            <OnPlatform x:TypeArguments="x:Double">
+                <On Platform="Android"
+                    Value="0" />
+                <On Platform="iOS"
+                    Value="2" />
+                <On Platform="Windows"
+                    Value="2" />
+            </OnPlatform>
+        </Border.StrokeThickness>
+        <Grid ColumnDefinitions="*,*,*">
+            <!--left-->
+            <Border x:Name="MyLeftBorder"
+                    Grid.Column="0"
+                    Style="{StaticResource MultipleBorderButtonStyle}">
+                <Image x:Name="MyBorderLeftIcon"
+                       WidthRequest="20"
+                       HeightRequest="32"
+                       HorizontalOptions="Center" />
+                <Border.Behaviors>
+                    <toolkit:TouchBehavior DefaultAnimationDuration="100"
+                                           DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                           PressedBackgroundColor="#EEEEEE"
+                                           PressedOpacity="0.8" />
+                </Border.Behaviors>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Tapped="OnLeftBorderTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+            <!--center-->
+            <Border x:Name="MyCenterBorder"  
+                    Grid.Column="1"
+                    Style="{StaticResource MultipleBorderButtonStyle}">
+                <Image x:Name="MyBorderCenterIcon"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       HorizontalOptions="Center" />
+                <Border.Behaviors>
+                    <toolkit:TouchBehavior DefaultAnimationDuration="100"
+                                           DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                           PressedBackgroundColor="#EEEEEE"
+                                           PressedOpacity="0.8" />
+                </Border.Behaviors>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Tapped="OnCenterBorderTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+            <!--right-->
+            <Border x:Name="MyRightBorder"
+                    Grid.Column="2"
+                    Style="{StaticResource MultipleBorderButtonStyle}">
+                <Image x:Name="MyBorderRightIcon"
+                       WidthRequest="20"
+                       HeightRequest="32"
+                       HorizontalOptions="Center" />
+                <Border.Behaviors>
+                    <toolkit:TouchBehavior DefaultAnimationDuration="100"
+                                           DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                           PressedBackgroundColor="#EEEEEE"
+                                           PressedOpacity="0.8" />
+                </Border.Behaviors>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Tapped="OnRightBorderTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+        </Grid>
+    </Border>
+</ContentView>

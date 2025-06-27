@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.LoginPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:handlers="clr-namespace:Dorisoy.DentalChair.Handlers"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+             xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--返回按钮-->
+        <Image Margin="5,15"
+               HeightRequest="20"
+               HorizontalOptions="Start"
+               VerticalOptions="Center">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="GoBack_Tapped" />
+            </Image.GestureRecognizers>
+            <Image.Source>
+                <FontImageSource FontFamily="MauiKitIcons"
+                                 Glyph="{x:Static views:MauiKitIcons.ChevronLeft}"
+                                 Size="20"
+                                 Color="White" />
+            </Image.Source>
+        </Image>
+
+        <Grid Grid.Row="1"
+              Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <VerticalStackLayout Grid.Row="2"
+                                 HorizontalOptions="Fill"
+                                 Spacing="20"
+                                 MaximumWidthRequest="300"
+                                 VerticalOptions="CenterAndExpand">
+                <!--用户名-->
+                <Border Margin="0"
+                        Padding="0"
+                        BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                        HeightRequest="52"
+                        HorizontalOptions="FillAndExpand"
+                        Stroke="{DynamicResource EntryAndEditorsBorderColor}">
+                    <StackLayout Margin="16,2"
+                                 HorizontalOptions="Fill"
+                                 Orientation="Horizontal"
+                                 VerticalOptions="CenterAndExpand">
+                        <Label FontFamily="MauiKitIcons"
+                               FontSize="22"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="{x:Static views:MauiKitIcons.Account}"
+                               TextColor="{DynamicResource BaseIconColor}"
+                               VerticalOptions="CenterAndExpand" />
+
+                        <handlers:BorderlessEntry Margin="8,0"
+                                                  BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                                  FontFamily="RegularFont"
+                                                  HeightRequest="50"
+                                                  HorizontalOptions="FillAndExpand"
+                                                  Keyboard="Default"
+                                                  Text="{Binding UserName,Mode=TwoWay}"
+                                                  Placeholder="邮箱或手机号"
+                                                  PlaceholderColor="{DynamicResource BaseLightTextColor}" />
+                    </StackLayout>
+                </Border>
+
+                <!--密码-->
+                <Border Margin="0"
+                        Padding="0"
+                        BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                        HeightRequest="52"
+                        HorizontalOptions="FillAndExpand"
+                        Stroke="{DynamicResource EntryAndEditorsBorderColor}">
+                    <StackLayout Margin="16,2"
+                                 Orientation="Horizontal"
+                                 VerticalOptions="CenterAndExpand">
+                        <Label FontFamily="MauiKitIcons"
+                               FontSize="22"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="{x:Static views:MauiKitIcons.Lock}"
+                               TextColor="{DynamicResource BaseIconColor}"
+                               VerticalOptions="CenterAndExpand" />
+
+                        <handlers:BorderlessEntry Margin="8,0"
+                                                  BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                                  FontFamily="RegularFont"
+                                                  HeightRequest="50"
+                                                  HorizontalOptions="FillAndExpand"
+                                                  IsPassword="True"
+                                                  Keyboard="Default"
+                                                  Text="{Binding Password,Mode=TwoWay}"
+                                                  Placeholder="输入你的密码"
+                                                  PlaceholderColor="{DynamicResource BaseLightTextColor}" />
+                    </StackLayout>
+                </Border>
+
+                <!--记住密码-->
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="Center"
+                      ColumnDefinitions="*,*">
+                    <CheckBox Grid.Column="0"
+                              Color="#C8C8C8"
+                              HorizontalOptions="StartAndExpand"/>
+                    <Label Grid.Column="1"
+                           FontAttributes="Bold"
+                           Text="30天免登录"
+                           TextColor="#C8C8C8"
+                           VerticalOptions="Center"
+                           HorizontalTextAlignment="End"
+                           HorizontalOptions="End" />
+                </Grid>
+
+                <!--提交-->
+                <Button Margin="5"
+                        BorderWidth="0"
+                        Command="{Binding  LoginCommand}"
+                        FontFamily="MediumFont"
+                        FontSize="16"
+                        HeightRequest="50"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        TextColor="#e5d667"
+                        Text="登录">
+                </Button>
+
+
+                <!--忘记密码-->
+                <Label FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Text="忘记了密码？"
+                       TextColor="#C8C8C8"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ForgotPassword_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </VerticalStackLayout>
+        </Grid>
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,1"
+                                 EndPoint="0,0">
+                <GradientStop Offset="0.1"
+                              Color="{DynamicResource LinearGradientStartColor}" />
+                <GradientStop Offset="1.1"
+                              Color="{DynamicResource LinearGradientEndColor}" />
+            </LinearGradientBrush>
+        </Grid.Background>
+    </Grid>
+</ContentPage>

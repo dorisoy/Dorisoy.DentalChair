@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Dorisoy.DentalChair.Views.SettingPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Dorisoy.DentalChair.Controls"
+             xmlns:handlers="clr-namespace:Dorisoy.DentalChair.Handlers"
+             xmlns:converters="clr-namespace:Dorisoy.DentalChair.Converters"
+             xmlns:localization="clr-namespace:Dorisoy.DentalChair.Resources.Translations"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:views="clr-namespace:Dorisoy.DentalChair.Views"
+             xmlns:viewmodels="clr-namespace:Dorisoy.DentalChair.ViewModels"
+             xmlns:helpers="clr-namespace:Dorisoy.DentalChair"
+             helpers:ViewModelLocator.AutoWireViewModel="True"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <Grid RowDefinitions="60,*"
+          ColumnDefinitions="115,*">
+        <!--Tab菜单-->
+        <Border Grid.Column="0"
+                Grid.RowSpan="2"
+                Background="White"
+                StrokeShape="{RoundRectangle CornerRadius=0}">
+            <CollectionView 
+                            SelectionMode="Single"
+                            ItemsSource="{Binding Pages}"
+                            SelectedItem="{Binding SelectedPage,Mode=TwoWay}">
+                <CollectionView.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid Grid.Column="0"
+                              Grid.Row="0"
+                              Padding="0,0,0,0"
+                              Margin="0,0,0,0"
+                              HeightRequest="60"
+                              Background="White">
+                            <Image Margin="0"
+                                   WidthRequest="25"
+                                   HeightRequest="25"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Source="s1.png">
+                            </Image>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_BackTapped" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.HeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="{Binding IsSelected,Converter={StaticResource BoolToColorConverter}}"
+                                StrokeShape="{RoundRectangle CornerRadius=0}">
+                            <VerticalStackLayout Padding="0">
+                                <Image WidthRequest="30"
+                                       HeightRequest="30"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding IsSelected}"
+                                                     Value="True">
+                                            <Setter Property="Source"
+                                                    Value="{Binding IconActive}" />
+                                            <Setter Property="Margin"
+                                                    Value="0,20,0,20" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding IsSelected}"
+                                                     Value="False">
+                                            <Setter Property="Source"
+                                                    Value="{Binding Icon}" />
+                                            <Setter Property="Margin"
+                                                    Value="0,20,0,20" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                                <Border WidthRequest="50"
+                                        HeightRequest=".5"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Center"
+                                        Background="#C8C8C8"
+                                        Margin="0,0,0,0"
+                                        StrokeShape="{RoundRectangle CornerRadius=0}">
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border"
+                                                     Binding="{Binding IsSelected}"
+                                                     Value="True">
+                                            <Setter Property="IsVisible"
+                                                    Value="Hidden" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Border"
+                                                     Binding="{Binding IsSelected}"
+                                                     Value="False">
+                                            <Setter Property="IsVisible"
+                                                    Value="Visible" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                </Border>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                        Opacity="0.6"
+                        Radius="12"
+                        Offset="-2,0" />
+            </Border.Shadow>
+        </Border>
+
+        <!--内容-->
+        <Grid Grid.Column="1"
+              Grid.RowSpan="2"
+              RowDefinitions="60,1,*"
+              VerticalOptions="Fill"
+              HorizontalOptions="Fill"
+              Padding="0,0,0,0">
+            <!--标题-->
+            <Grid Grid.Row="0"
+                  HeightRequest="60"
+                  ColumnDefinitions="50,*"
+                  Background="White">
+                <Image Grid.Column="0"
+                       Margin="0"
+                       WidthRequest="25"
+                       HeightRequest="25"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Source="s7.png">
+                </Image>
+                <Label Grid.Column="1"
+                       Text="{Binding SelectedPage.Title}"
+                       TextColor="{DynamicResource BaseTextColor}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       FontSize="20" />
+            </Grid>
+            <Border Grid.Row="1"
+                    HeightRequest=".5"
+                    VerticalOptions="End"
+                    HorizontalOptions="Fill"
+                    Background="#C8C8C8"
+                    Margin="0,0,0,0"
+                    StrokeShape="{RoundRectangle CornerRadius=0}" />
+
+            <!-- 动态内容视图 -->
+            <ContentView Grid.Row="2"
+                         Content="{Binding CurrentPageContent}" />
+        </Grid>
+
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="0,1">
+                <GradientStop Offset="0.0"
+                              Color="#E9E9F1" />
+                <GradientStop Offset="1.0"
+                              Color="#FFFFFF" />
+            </LinearGradientBrush>
+        </Grid.Background>
+    </Grid>
+</ContentPage>

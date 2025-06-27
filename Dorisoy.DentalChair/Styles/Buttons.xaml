@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="Dorisoy.DentalChair.Buttons"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--按钮通用样式-->
+    <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="RegularFont" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="14,10" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <!--禁用-->
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor"
+                                    Value="{DynamicResource BaseLightTextColor}" />
+                            <Setter Property="BackgroundColor"
+                                    Value="{DynamicResource DisabledColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--默认-->
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Scale"
+                                    Value="1" />
+                            <Setter Property="BackgroundColor"
+                                    Value="Black" />
+                            <Setter Property="BorderColor"
+                                    Value="Black" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--按下-->
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale"
+                                    Value="0.98" />
+                            <Setter Property="BackgroundColor"
+                                    Value="Black" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--滑过-->
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                    Value="#364149" />
+                            <Setter Property="BorderColor"
+                                    Value="#364149" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0"
+                                     EndPoint="0,1">
+                    <GradientStop Offset="0.0"
+                                  Color="#313F4A" />
+                    <GradientStop Offset="0.3"
+                                  Color="#000000" />
+                    <GradientStop Offset="0.8"
+                                  Color="#000000" />
+                    <GradientStop Offset="1.0"
+                                  Color="#313F4A" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow Brush="Black"
+                        Opacity="0.5"
+                        Radius="5"
+                        Offset="1,1" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  BASE BUTTON STYLE  -->
+    <Style x:Key="BaseButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="RegularFont" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="Padding" Value="15,0" />
+        <Setter Property="HeightRequest" Value="44" />
+    </Style>
+
+    <!--  BASE OUTLINE BUTTON STYLE  -->
+    <Style
+        x:Key="BaseOutlineButtonStyle"
+        BasedOn="{StaticResource BaseButtonStyle}"
+        TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="1" />
+    </Style>
+
+    <!--  BASE ICON BUTTON STYLE  -->
+    <Style x:Key="BaseIconButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="CornerRadius" Value="22" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="WidthRequest" Value="44" />
+    </Style>
+
+    <!--  BASE ICON OUTLINE BUTTON STYLE  -->
+    <Style
+        x:Key="BaseIconOutlineButtonStyle"
+        BasedOn="{StaticResource BaseIconButtonStyle}"
+        TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="2" />
+    </Style>
+
+
+
+    <!--  PRIMARY BUTTON  -->
+    <Style
+        x:Key="PrimaryButtonStyle"
+        BasedOn="{StaticResource BaseButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+
+    <!--  SECONDARY BUTTON  -->
+    <Style
+        x:Key="SecondaryButtonStyle"
+        BasedOn="{StaticResource BaseButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryColor}" />
+    </Style>
+
+    <!--  OUTLINE PRIMARY BUTTON  -->
+    <Style
+        x:Key="OutlinePrimaryButtonStyle"
+        BasedOn="{StaticResource BaseOutlineButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+
+    <!--  OUTLINE SECONDARY BUTTON  -->
+    <Style
+        x:Key="OutlineSecondaryButtonStyle"
+        BasedOn="{StaticResource BaseOutlineButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource SecondaryColor}" />
+    </Style>
+
+    <!--  OUTLINE BUTTON  -->
+    <Style
+        x:Key="OutlineButtonStyle"
+        BasedOn="{StaticResource BaseOutlineButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource BaseTextColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource BaseTextColor}" />
+    </Style>
+
+    <!--  PRIMARY ICON BUTTON  -->
+    <Style
+        x:Key="PrimaryIconButtonStyle"
+        BasedOn="{StaticResource BaseIconButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+
+    <!--  OUTLINE PRIMARY ICON BUTTON  -->
+    <Style
+        x:Key="OutlinePrimaryIconButtonStyle"
+        BasedOn="{StaticResource BaseIconOutlineButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+
+    <!--  OUTLINE SECONDARY ICON BUTTON  -->
+    <Style
+        x:Key="OutlineSecondaryIconButtonStyle"
+        BasedOn="{StaticResource BaseIconOutlineButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource SecondaryColor}" />
+    </Style>
+
+    <!--  SAVE BUTTON  -->
+    <Style
+        x:Key="SaveButtonStyle"
+        BasedOn="{StaticResource BaseButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource SaveColor}" />
+    </Style>
+
+    <!--  SAVE OUTLINE BUTTON  -->
+    <Style
+        x:Key="SaveOutlineButtonStyle"
+        BasedOn="{StaticResource BaseOutlineButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource SaveColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource SaveColor}" />
+    </Style>
+
+    <!--  DELETE BUTTON  -->
+    <Style
+        x:Key="DeleteButtonStyle"
+        BasedOn="{StaticResource BaseButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource DeleteColor}" />
+    </Style>
+
+    <!--  DELETE OUTLINE BUTTON  -->
+    <Style
+        x:Key="DeleteOutlineButtonStyle"
+        BasedOn="{StaticResource BaseOutlineButtonStyle}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource DeleteColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource DeleteColor}" />
+    </Style>
+
+</ResourceDictionary>
